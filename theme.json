@@ -56,7 +56,13 @@
           "name": "Light grey",
           "color": "#CECECE"
         }
-      ]
+      ],
+      "customGradient": false,
+      "defaultGradients": false,
+      "gradients": [],
+      "customDuotone": false,
+      "defaultDuotone": false,
+      "duotone": []
     },
     "typography": {
       "fontFamilies": [
