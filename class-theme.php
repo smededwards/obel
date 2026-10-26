@@ -10,24 +10,43 @@ namespace Obel;
 /** Registers shared presentation behaviour. */
 final class Theme {
 	/** Register hooks. */
-	public function register() {
+	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
 	}
 
 	/** Register the primary menu location. */
-	public function setup() {
+	public function setup(): void {
 		register_nav_menus( array( 'primary' => __( 'Primary navigation', 'obel' ) ) );
 	}
 
 	/** Load the early colour preference before the first paint. */
-	public function assets() {
+	public function assets(): void {
 		wp_enqueue_script( 'obel-colour-mode', get_template_directory_uri() . '/assets/colour-mode.js', array(), (string) filemtime( get_template_directory() . '/assets/colour-mode.js' ), false );
 	}
 
-	/** Render links until a menu has been assigned. */
-	public static function navigation() {
-		echo '<ul class="menu">';
+	/**
+	 * Provide fallback links with the same output contract as wp_nav_menu().
+	 *
+	 * @param array $args Menu arguments, including the output preference.
+	 * @return string|null Menu markup when output is disabled, otherwise null.
+	 */
+	public static function navigation( array $args = array() ): ?string {
+		$markup = self::navigation_markup();
+		if ( isset( $args['echo'] ) && ! $args['echo'] ) {
+			return $markup;
+		}
+		printf( '%s', wp_kses_post( $markup ) );
+		return null;
+	}
+
+	/**
+	 * Build fallback navigation independently of the output boundary.
+	 *
+	 * @return string Menu markup containing escaped page links.
+	 */
+	private static function navigation_markup(): string {
+		$items = '';
 		foreach ( array(
 			'about'    => __( 'About', 'obel' ),
 			'work'     => __( 'Work', 'obel' ),
@@ -40,8 +59,13 @@ final class Theme {
 				continue;
 			}
 			$current = (int) get_queried_object_id() === (int) $page->ID;
-			echo '<li><a href="' . esc_url( get_permalink( $page ) ) . '"' . ( $current ? ' aria-current="page"' : '' ) . '>' . esc_html( $label ) . '</a></li>';
+			$items  .= sprintf(
+				'<li><a href="%s"%s>%s</a></li>',
+				esc_url( get_permalink( $page ) ),
+				$current ? ' aria-current="page"' : '',
+				esc_html( $label )
+			);
 		}
-		echo '</ul>';
+		return sprintf( '<ul class="menu site-nav__list">%s</ul>', $items );
 	}
 }

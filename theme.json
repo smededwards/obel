@@ -80,12 +80,12 @@
   },
   "styles": {
     "typography": {
-      "fontFamily": "var:preset|font-family|serif"
+      "fontFamily": "var:preset|font-family|sans"
     },
     "elements": {
       "heading": {
         "typography": {
-          "fontFamily": "var:preset|font-family|sans"
+          "fontFamily": "var:preset|font-family|serif"
         }
       }
     }
