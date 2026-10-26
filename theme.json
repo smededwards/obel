@@ -3,7 +3,91 @@
   "version": 3,
   "settings": {
     "appearanceTools": true,
-    "useRootPaddingAwareAlignments": true
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "720px",
+      "wideSize": "1120px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        {
+          "slug": "highlight",
+          "name": "Highlight",
+          "color": "#C29C69"
+        },
+        {
+          "slug": "highlight-light",
+          "name": "Light highlight",
+          "color": "#E8C9A0"
+        },
+        {
+          "slug": "highlight-dark",
+          "name": "Dark highlight",
+          "color": "#A17943"
+        },
+        {
+          "slug": "black",
+          "name": "Black",
+          "color": "#19191A"
+        },
+        {
+          "slug": "deep-black",
+          "name": "Deep black",
+          "color": "#08080A"
+        },
+        {
+          "slug": "charcoal",
+          "name": "Charcoal",
+          "color": "#424245"
+        },
+        {
+          "slug": "white",
+          "name": "White",
+          "color": "#FFFFFF"
+        },
+        {
+          "slug": "grey",
+          "name": "Grey",
+          "color": "#A2A0A0"
+        },
+        {
+          "slug": "light-grey",
+          "name": "Light grey",
+          "color": "#CECECE"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "sans",
+          "name": "Noto Sans",
+          "fontFamily": "\"Noto Sans\", sans-serif"
+        },
+        {
+          "slug": "serif",
+          "name": "Noto Serif",
+          "fontFamily": "\"Noto Serif\", Georgia, serif"
+        },
+        {
+          "slug": "mono",
+          "name": "Noto Mono",
+          "fontFamily": "\"Noto Mono\", monospace"
+        }
+      ]
+    }
   },
-  "styles": {}
+  "styles": {
+    "typography": {
+      "fontFamily": "var:preset|font-family|serif"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var:preset|font-family|sans"
+        }
+      }
+    }
+  }
 }

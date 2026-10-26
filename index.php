@@ -7,7 +7,7 @@
 
 get_header();
 ?>
-<main id="main">
+<main id="main" class="site-shell page-content">
 	<?php
 	while ( have_posts() ) :
 		the_post();
