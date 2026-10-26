@@ -56,3 +56,6 @@ function obel_editor_assets() {
 	obel_enqueue_entry( 'editor' );
 }
 add_action( 'enqueue_block_editor_assets', 'obel_editor_assets' );
+
+require_once __DIR__ . '/class-theme.php';
+( new \Obel\Theme() )->register();
