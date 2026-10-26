@@ -9,7 +9,7 @@ get_header();
 $posts_page = (int) get_option( 'page_for_posts' );
 ?>
 <main id="main" class="site-shell page-content">
-	<h1><?php echo esc_html( $posts_page ? get_the_title( $posts_page ) : __( 'Posts', 'obel' ) ); ?></h1>
+	<h1><?php printf( '%s', esc_html( $posts_page ? get_the_title( $posts_page ) : __( 'Posts', 'obel' ) ) ); ?></h1>
 	<?php if ( have_posts() ) : ?>
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>
