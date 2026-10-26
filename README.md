@@ -10,6 +10,12 @@ Run `composer install` and `composer lint` in the PHP tools container. CI also s
 
 For release, publish this repository separately and create a semantic version tag after checks pass. The site must require a real tag and update its production lock. Do not deploy a local path dependency.
 
+## Media sizes
+
+Obel keeps three generated core sizes: a 150×150 cropped Thumbnail for media previews, Medium within 640×640, and Large within 1120×1120. Medium and Large preserve the source aspect ratio; WordPress does not upscale smaller uploads. The full-size image remains available to responsive images, including higher-density displays. WordPress’s normal handling of oversized originals is preserved.
+
+`class-images.php` excludes the overlapping core `medium_large`, `1536x1536` and `2048x2048` sizes from generation while preserving any additional sizes registered by plugins. On theme activation it sets the native Settings → Media dimensions and the default editor insertion size to Large. Administrators can subsequently adjust the Media settings; nothing rewrites them on each request. Existing media needs regeneration after changing sizes.
+
 ## Contribution conventions
 
 Use Conventional Commit subjects and PR titles, for example `feat(theme): add navigation` or `fix(blocks): correct editor styles`. The repository's first commit is the explicit exception: `Initial Commit`. PR CI validates titles and every commit in the PR. See `AGENTS.md` for repository guidance.
