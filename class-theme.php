@@ -17,6 +17,7 @@ final class Theme {
 
 	/** Register the primary menu location. */
 	public function setup(): void {
+		add_post_type_support( 'page', 'excerpt' );
 		register_nav_menus( array( 'primary' => __( 'Primary navigation', 'obel' ) ) );
 	}
 
