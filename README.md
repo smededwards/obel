@@ -14,6 +14,10 @@ For release, publish this repository separately and create a semantic version ta
 
 Use Conventional Commit subjects and PR titles, for example `feat(theme): add navigation` or `fix(blocks): correct editor styles`. The repository's first commit is the explicit exception: `Initial Commit`. PR CI validates titles and every commit in the PR. See `AGENTS.md` for repository guidance.
 
+## Contact form styling
+
+The native Rune Contact form uses `src/_contact.scss` for BEM field, button, focus and validation styles. These styles are shared by the frontend and editor, adapt to the theme colours and retain accessible focus states. Submission handling belongs to Aeon; surrounding page content remains native blocks.
+
 ## Work and Projects pages
 
 Use standard Pages, with individual entries as child pages of Work or Projects. Their archive cards are native Query Loop blocks scoped to the parent page, ordered by Page Attributes → Order. Edit the blocks in the page editor; use Page List when only a navigation list is needed.
