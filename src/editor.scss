@@ -1,14 +1,42 @@
 @use "content";
 @use "contact";
 
-@font-face { font-family: "Noto Sans"; src: url(../assets/fonts/noto-sans.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face {
+	font-family: "Noto Sans";
+	src: url(../assets/fonts/noto-sans.woff2) format("woff2");
+	font-weight: 100 900;
+	font-display: swap;
+}
 
-@font-face { font-family: "Noto Serif"; src: url(../assets/fonts/noto-serif.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face {
+	font-family: "Noto Serif";
+	src: url(../assets/fonts/noto-serif.woff2) format("woff2");
+	font-weight: 100 900;
+	font-display: swap;
+}
 
-@font-face { font-family: "Noto Mono"; src: url(../assets/fonts/noto-mono.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face {
+	font-family: "Noto Mono";
+	src: url(../assets/fonts/noto-mono.woff2) format("woff2");
+	font-weight: 100 900;
+	font-display: swap;
+}
 
-.editor-styles-wrapper { font-family: "Noto Sans", sans-serif; line-height: 1.8; }
+.editor-styles-wrapper {
+	font-family: "Noto Sans", sans-serif;
+	line-height: 1.8;
+}
 
-.editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4, .editor-styles-wrapper h5, .editor-styles-wrapper h6 { font-family: "Noto Serif", Georgia, serif; }
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4,
+.editor-styles-wrapper h5,
+.editor-styles-wrapper h6 {
+	font-family: "Noto Serif", Georgia, serif;
+}
 
-.editor-styles-wrapper code, .editor-styles-wrapper pre { font-family: "Noto Mono", monospace; }
+.editor-styles-wrapper code,
+.editor-styles-wrapper pre {
+	font-family: "Noto Mono", monospace;
+}
