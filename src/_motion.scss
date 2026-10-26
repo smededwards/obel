@@ -1,0 +1,56 @@
+@mixin enhancements {
+	@media (prefers-reduced-motion: no-preference) {
+		a:hover {
+			transition: color 160ms ease;
+		}
+
+		.colour-toggle {
+			transition: background-color 160ms ease;
+		}
+
+		.contact-form__submit {
+			transition: border-color 160ms ease;
+		}
+
+		.contact-form__submit:hover {
+			border-color: var(--obel-accent, #a17943);
+		}
+
+		.work-card__image {
+			overflow: hidden;
+		}
+
+		.work-card__image img,
+		.archive-card__image img {
+			transition: transform 180ms ease-out;
+		}
+
+		.card-reveal--enter {
+			animation: obel-card-enter 450ms ease-out both;
+		}
+
+		.card-reveal--enter:focus-within {
+			animation: none;
+		}
+
+		@media (hover: hover) and (pointer: fine) {
+			.work-grid > li:hover .work-card__image img,
+			.collection-grid > li:hover .archive-card__image img,
+			.archive-list > li:hover .archive-card__image img {
+				transform: scale(1.02);
+			}
+		}
+
+		@keyframes obel-card-enter {
+			from {
+				opacity: 0;
+				transform: translateY(28px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+	}
+}

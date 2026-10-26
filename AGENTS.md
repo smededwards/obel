@@ -22,3 +22,13 @@
 - Use BEM for custom HTML and SCSS classes: `block`, `block__element`, `block--modifier` or `block__element--modifier`. Preserve WordPress-owned classes and keep block metadata, saved markup and selectors aligned when renaming classes.
 
 - Prefer native WordPress blocks and editor controls wherever they meet the requirement. Use Page List for page navigation and Query Loop for dynamic card layouts; introduce custom blocks, shortcodes or renderers only for an agreed gap in core.
+
+## SCSS formatting
+
+- Follow the expanded formatting in the current SCSS sources, including rules with just one declaration. Put the opening brace on the selector line, declarations on separate indented lines, and the closing brace on its own line. Never compress a rule into one line.
+- Indent with tabs (display width 4), use LF line endings and retain a final newline. Remove trailing whitespace.
+- Put every selector in a comma-separated selector list on its own line, including nested selectors and pseudo-classes.
+- Use one blank line between sibling rules or sections. Do not add a blank line immediately after an opening brace or before a closing brace, including in media queries, mixins and nested rules.
+- Use a space after declaration colons, trailing semicolons, and no padding inside function parentheses. Preserve meaningful declaration order; do not reorder properties as part of formatting.
+- Keep the existing BEM conventions. Nest only where it improves clarity; do not restructure selectors merely to change formatting.
+- `npm run lint:scss` enforces this style through WordPress's SCSS stylistic preset and the local overrides. Use `npm run lint:scss:fix` for formatting corrections, and check the diff to preserve the author's values and layout choices.

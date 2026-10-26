@@ -1,4 +1,5 @@
 import './frontend.scss';
+import './motion';
 
 const toggle = document.querySelector( '[data-colour-toggle]' );
 const system = window.matchMedia( '(prefers-color-scheme: dark)' );
