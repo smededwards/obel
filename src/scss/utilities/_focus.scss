@@ -1,0 +1,4 @@
+@mixin ring {
+	outline: 3px solid var(--obel-accent);
+	outline-offset: 5px;
+}

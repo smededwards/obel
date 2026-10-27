@@ -14,6 +14,7 @@
     "test:motion": "node --test tests/motion.test.cjs"
   },
   "devDependencies": {
-    "@wordpress/scripts": "37.0.0"
+    "@wordpress/scripts": "37.0.0",
+    "mini-css-extract-plugin": "2.10.2"
   }
 }

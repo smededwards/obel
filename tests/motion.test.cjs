@@ -5,7 +5,7 @@ const test = require( 'node:test' );
 const vm = require( 'node:vm' );
 const postcss = require( 'postcss' );
 
-const source = fs.readFileSync( path.join( __dirname, '../src/motion.js' ), 'utf8' );
+const source = fs.readFileSync( path.join( __dirname, '../src/js/motion.js' ), 'utf8' );
 
 function harness( { motion = true, observerAvailable = true } = {} ) {
 	const listeners = {};
@@ -113,7 +113,7 @@ test( 'back-forward restoration does not replay revealed cards', () => {
 } );
 
 test( 'compiled animations and transitions require no-preference; opacity zero is confined to keyframes', () => {
-	const css = postcss.parse( fs.readFileSync( path.join( __dirname, '../build/frontend.css' ), 'utf8' ) );
+	const css = postcss.parse( fs.readFileSync( path.join( __dirname, '../build/styles.css' ), 'utf8' ) );
 	let effects = 0;
 	css.walkDecls( ( declaration ) => {
 		if ( /^(animation|transition)(-|$)/.test( declaration.prop ) || ( declaration.prop === 'opacity' && declaration.value === '0' ) ) {

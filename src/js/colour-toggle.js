@@ -1,7 +1,4 @@
-import './frontend.scss';
-import './motion';
-
-const toggle = document.querySelector( '[data-colour-toggle]' );
+const toggle = document.querySelector( '.colour-toggle button' );
 const system = window.matchMedia( '(prefers-color-scheme: dark)' );
 const isDark = () =>
 	( document.documentElement.dataset.colourMode ||

@@ -1,0 +1,113 @@
+.site-nav {
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		font-size: 0.875rem;
+
+		a {
+			font-weight: 700;
+			text-decoration: none;
+			padding-block: 0.5rem;
+		}
+
+		[aria-current="page"] {
+			text-decoration: underline;
+			text-decoration-color: var(--obel-gold);
+		}
+	}
+
+	@media (max-width: 760px) {
+		&__list {
+			gap: 1rem;
+			font-size: 0.8rem;
+		}
+	}
+
+	&.wp-block-navigation {
+		font-size: 0.875rem;
+		font-weight: 700;
+
+		.wp-block-navigation-item__content {
+			&:hover {
+				color: color-mix(in srgb, var(--obel-gold) 65%, var(--obel-ink));
+			}
+		}
+
+		.wp-block-navigation__container {
+			gap: 1.5rem;
+		}
+
+		.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
+			background: var(--obel-bg);
+			color: var(--obel-ink);
+			padding: 1.5rem;
+
+			.wp-block-navigation__responsive-close {
+				display: flex;
+				flex: 1;
+				max-width: none;
+				margin: 0;
+			}
+
+			.wp-block-navigation__responsive-dialog {
+				display: flex;
+				flex: 1;
+				align-items: center;
+				justify-content: center;
+				margin-top: 0;
+			}
+
+			.wp-block-navigation__responsive-container-content {
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				min-height: calc(100dvh - 3rem);
+				padding-block: 3rem;
+			}
+
+			.wp-block-navigation__container {
+				align-items: center;
+				justify-content: center;
+				gap: 1rem;
+				width: 100%;
+				font-size: clamp(1.75rem, 8vw, 2.25rem);
+				line-height: 1.25;
+				text-align: center;
+			}
+
+			.wp-block-navigation__responsive-container-close {
+				position: fixed;
+				top: 1.5rem;
+				right: 1.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 44px;
+				height: 44px;
+			}
+		}
+	}
+
+	@media (min-width: 323px) {
+		&.wp-block-navigation {
+			.wp-block-navigation__responsive-container-open:not(.always-shown) {
+				display: none;
+			}
+
+			.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+				display: block;
+				position: relative;
+				width: 100%;
+				z-index: auto;
+
+				.wp-block-navigation__responsive-container-close {
+					display: none;
+				}
+			}
+		}
+	}
+}

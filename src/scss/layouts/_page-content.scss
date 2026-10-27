@@ -1,0 +1,14 @@
+.page-content {
+	min-height: 55vh;
+	padding-block: 3rem 5rem;
+
+	> article > p {
+		max-width: 68ch;
+	}
+
+	@media (max-width: 760px) {
+		& {
+			padding-top: 1rem;
+		}
+	}
+}

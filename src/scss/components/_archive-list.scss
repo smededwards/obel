@@ -1,0 +1,22 @@
+@use "../utilities/motion";
+
+.archive-list {
+	display: grid;
+	gap: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	> li {
+		border-top: 1px solid var(--obel-line, #cecece);
+		padding-block: 2.5rem;
+	}
+
+	@include motion.enabled {
+		@media (hover: hover) and (pointer: fine) {
+			> li:hover .archive-card__image img {
+				transform: scale(1.02);
+			}
+		}
+	}
+}

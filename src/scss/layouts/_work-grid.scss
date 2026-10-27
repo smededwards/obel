@@ -1,0 +1,27 @@
+@use "../utilities/motion";
+
+.work-grid {
+	display: grid !important;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+
+	@media (max-width: 760px) {
+		& {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+
+	&.wp-block-post-template {
+		list-style: none;
+		padding: 0;
+	}
+
+	@include motion.enabled {
+		@media (hover: hover) and (pointer: fine) {
+			> li:hover .work-card__image img {
+				transform: scale(1.02);
+			}
+		}
+	}
+}
