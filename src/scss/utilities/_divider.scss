@@ -1,0 +1,14 @@
+@mixin top-dash {
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 5rem;
+		max-width: 100%;
+		border-top: 3px solid var(--obel-gold, #c29c69);
+		transform: translateX(-50%);
+	}
+}

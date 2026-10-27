@@ -1,6 +1,9 @@
+@use "../utilities/divider";
+
 .home-section {
+	@include divider.top-dash;
+
 	padding-block: 3.5rem;
-	border-top: 1px solid var(--obel-line);
 
 	&__header {
 		display: flex;

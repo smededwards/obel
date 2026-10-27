@@ -1,0 +1,30 @@
+.social-links.wp-block-social-links {
+	gap: 0.5rem;
+	margin: 0;
+
+	&.contact-socials {
+		margin-block-start: 2rem;
+	}
+
+	.wp-social-link {
+		color: var(--obel-ink);
+		background: transparent;
+
+		&:hover {
+			transform: none;
+			color: var(--obel-gold);
+		}
+	}
+
+	.wp-block-social-link-anchor {
+		justify-content: center;
+		min-width: 44px;
+		min-height: 44px;
+		padding: 10px;
+
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
