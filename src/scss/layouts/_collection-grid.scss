@@ -1,0 +1,28 @@
+@use "../utilities/motion";
+
+.collection-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 3rem 2rem;
+	list-style: none;
+	padding: 0;
+
+	.archive-card {
+		padding-bottom: 2rem;
+	}
+
+	@media (max-width: 700px) {
+		& {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+
+	@include motion.enabled {
+		@media (hover: hover) and (pointer: fine) {
+			> li:hover .archive-card__image img {
+				transform: scale(1.02);
+			}
+		}
+	}
+}

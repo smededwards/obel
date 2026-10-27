@@ -13,12 +13,12 @@ final class Theme {
 	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
+		add_filter( 'render_block_core/button', array( $this, 'colour_toggle' ), 10, 2 );
 	}
 
-	/** Register the primary menu location. */
+	/** Register editorial support. */
 	public function setup(): void {
 		add_post_type_support( 'page', 'excerpt' );
-		register_nav_menus( array( 'primary' => __( 'Primary navigation', 'obel' ) ) );
 	}
 
 	/** Load the early colour preference before the first paint. */
@@ -27,46 +27,22 @@ final class Theme {
 	}
 
 	/**
-	 * Provide fallback links with the same output contract as wp_nav_menu().
+	 * Hide the enhancement until JavaScript is available.
 	 *
-	 * @param array $args Menu arguments, including the output preference.
-	 * @return string|null Menu markup when output is disabled, otherwise null.
+	 * @param string $content Rendered button.
+	 * @param array  $block Parsed block.
+	 * @return string Accessible button markup.
 	 */
-	public static function navigation( array $args = array() ): ?string {
-		$markup = self::navigation_markup();
-		if ( isset( $args['echo'] ) && ! $args['echo'] ) {
-			return $markup;
+	public function colour_toggle( string $content, array $block ): string {
+		$classes = explode( ' ', $block['attrs']['className'] ?? '' );
+		if ( ! in_array( 'colour-toggle', $classes, true ) ) {
+			return $content;
 		}
-		printf( '%s', wp_kses_post( $markup ) );
-		return null;
-	}
-
-	/**
-	 * Build fallback navigation independently of the output boundary.
-	 *
-	 * @return string Menu markup containing escaped page links.
-	 */
-	private static function navigation_markup(): string {
-		$items = '';
-		foreach ( array(
-			'about'    => __( 'About', 'obel' ),
-			'work'     => __( 'Work', 'obel' ),
-			'projects' => __( 'Projects', 'obel' ),
-			'posts'    => __( 'Posts', 'obel' ),
-			'contact'  => __( 'Contact', 'obel' ),
-		) as $slug => $label ) {
-			$page = get_page_by_path( $slug );
-			if ( ! $page || 'publish' !== $page->post_status ) {
-				continue;
-			}
-			$current = (int) get_queried_object_id() === (int) $page->ID;
-			$items  .= sprintf(
-				'<li><a href="%s"%s>%s</a></li>',
-				esc_url( get_permalink( $page ) ),
-				$current ? ' aria-current="page"' : '',
-				esc_html( $label )
-			);
+		$tags = new \WP_HTML_Tag_Processor( $content );
+		if ( $tags->next_tag( 'button' ) ) {
+			$tags->set_attribute( 'hidden', true );
+			$tags->set_attribute( 'aria-pressed', 'false' );
 		}
-		return sprintf( '<ul class="menu site-nav__list">%s</ul>', $items );
+		return $tags->get_updated_html();
 	}
 }

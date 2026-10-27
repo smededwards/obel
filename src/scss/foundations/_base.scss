@@ -1,0 +1,84 @@
+@use "../utilities/focus";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-padding-top: 2rem;
+}
+
+body {
+	margin: 0;
+	background: var(--obel-bg);
+	color: var(--obel-ink);
+	font-family: "Noto Sans", sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.8;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Noto Serif", Georgia, serif;
+}
+
+h1,
+h2,
+h3 {
+	line-height: 1.2;
+	letter-spacing: -0.035em;
+}
+
+h1 {
+	font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+h2 {
+	font-size: clamp(1.7rem, 3vw, 2.2rem);
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
+a {
+	color: inherit;
+	text-underline-offset: 0.25em;
+	text-decoration-thickness: 1px;
+
+	&:hover {
+		color: color-mix(in srgb, var(--obel-gold) 65%, var(--obel-ink));
+	}
+}
+
+:focus-visible {
+	@include focus.ring;
+}
+
+button {
+	font: inherit;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+code,
+pre {
+	font-family: "Noto Mono", monospace;
+}
+
+pre {
+	overflow-x: auto;
+	padding: 1.5rem;
+	background: var(--obel-panel);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}

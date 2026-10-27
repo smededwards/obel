@@ -1,0 +1,27 @@
+.home-section {
+	padding-block: 3.5rem;
+	border-top: 1px solid var(--obel-line);
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 1rem;
+		margin-bottom: 2rem;
+
+		h2 {
+			margin: 0;
+		}
+	}
+
+	&__note {
+		max-width: 60ch;
+		color: var(--obel-muted);
+	}
+
+	@media (max-width: 760px) {
+		&__header {
+			flex-wrap: wrap;
+		}
+	}
+}

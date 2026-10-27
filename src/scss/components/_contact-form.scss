@@ -1,3 +1,5 @@
+@use "../utilities/motion";
+
 .contact-form {
 	max-width: 720px;
 
@@ -90,5 +92,15 @@
 	[tabindex="-1"]:focus {
 		outline: 2px solid var(--obel-accent, #a17943);
 		outline-offset: 3px;
+	}
+
+	&__submit {
+		@include motion.enabled {
+			transition: border-color 160ms ease;
+
+			&:hover {
+				border-color: var(--obel-accent, #a17943);
+			}
+		}
 	}
 }

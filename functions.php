@@ -32,8 +32,8 @@ function obel_enqueue_entry( $entry ) {
 	}
 	$asset = require $base . '.asset.php';
 	wp_enqueue_script( 'obel-' . $entry, get_template_directory_uri() . '/build/' . $entry . '.js', $asset['dependencies'], $asset['version'], true );
-	if ( 'frontend' === $entry && file_exists( $base . '.css' ) ) {
-		wp_enqueue_style( 'obel-frontend', get_template_directory_uri() . '/build/frontend.css', array(), $asset['version'] );
+	if ( 'scripts' === $entry && file_exists( get_template_directory() . '/build/styles.css' ) ) {
+		wp_enqueue_style( 'obel-styles', get_template_directory_uri() . '/build/styles.css', array(), (string) filemtime( get_template_directory() . '/build/styles.css' ) );
 	}
 }
 
@@ -43,7 +43,7 @@ function obel_enqueue_entry( $entry ) {
  * @return void
  */
 function obel_frontend_assets() {
-	obel_enqueue_entry( 'frontend' );
+	obel_enqueue_entry( 'scripts' );
 }
 add_action( 'wp_enqueue_scripts', 'obel_frontend_assets' );
 

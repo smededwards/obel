@@ -94,6 +94,37 @@
           "fontFamily": "var:preset|font-family|serif"
         }
       }
+    },
+    "spacing": {
+      "blockGap": "1.5rem"
     }
-  }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ],
+  "customTemplates": [
+    {
+      "name": "work-entry",
+      "title": "Work entry",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "project-entry",
+      "title": "Project entry",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ]
 }

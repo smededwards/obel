@@ -1,0 +1,10 @@
+.site-shell {
+	width: min(1120px, calc(100% - 3rem));
+	margin-inline: auto;
+
+	@media (max-width: 360px) {
+		& {
+			width: calc(100% - 2rem);
+		}
+	}
+}
