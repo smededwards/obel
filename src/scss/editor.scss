@@ -1,10 +1,10 @@
 .editor-styles-wrapper {
-	--obel-bg: #fff;
-	--obel-ink: #19191a;
-	--obel-muted: #424245;
-	--obel-line: #cecece;
-	--obel-panel: #f5f5f4;
-	--obel-accent: #a17943;
+	--obel-bg: var(--rune-canvas-background, #fff);
+	--obel-ink: var(--rune-canvas-text, #19191a);
+	--obel-muted: var(--rune-canvas-muted, #424245);
+	--obel-line: var(--rune-canvas-line, #cecece);
+	--obel-panel: var(--rune-canvas-panel, #f5f5f4);
+	--obel-accent: var(--rune-canvas-accent, #a17943);
 	--obel-gold: #c29c69;
 	background: var(--obel-bg);
 	color: var(--obel-ink);

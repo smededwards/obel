@@ -1,14 +1,22 @@
 <!-- wp:group {"tagName":"div","className":"site-footer site-shell","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group site-footer site-shell">
-<!-- wp:group {"tagName":"div","className":"site-footer__identity","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
-<div class="wp-block-group site-footer__identity">
-<!-- wp:site-title {"level":0,"isLink":false} /-->
-<!-- wp:site-tagline /-->
-</div>
-<!-- /wp:group -->
-<!-- wp:pattern {"slug":"obel/footer-logo"} /-->
-<!-- wp:paragraph {"className":"site-footer__contact"} -->
-<p class="site-footer__contact"><a href="/contact/">Get in touch ↗</a></p>
-<!-- /wp:paragraph -->
+	<!-- wp:group {"tagName":"div","className":"site-footer__identity","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+	<div class="wp-block-group site-footer__identity">
+		<!-- wp:site-title {"level":0,"isLink":false} /-->
+		<!-- wp:paragraph {"className":"site-footer__separator"} -->
+		<p class="site-footer__separator"><span aria-hidden="true">/</span></p>
+		<!-- /wp:paragraph -->
+		<!-- wp:site-tagline /-->
+	</div>
+	<!-- /wp:group -->
+	<!-- wp:pattern {"slug":"obel/footer-logo"} /-->
+	<!-- wp:group {"className":"site-footer__actions","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"}} -->
+	<div class="wp-block-group site-footer__actions">
+		<!-- wp:pattern {"slug":"obel/social-links"} /-->
+		<!-- wp:paragraph {"className":"site-footer__contact"} -->
+		<p class="site-footer__contact"><a href="/contact/">Get in touch ↗</a></p>
+		<!-- /wp:paragraph -->
+	</div>
+	<!-- /wp:group -->
 </div>
 <!-- /wp:group -->

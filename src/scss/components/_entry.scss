@@ -1,3 +1,5 @@
+@use "../utilities/divider";
+
 .entry {
 	&__header {
 		max-width: 1000px;
@@ -95,12 +97,6 @@
 			font-size: 1.2em;
 		}
 
-		.wp-block-separator {
-			width: 5rem;
-			margin: 3rem auto;
-			border-color: var(--obel-gold, #c29c69);
-		}
-
 		.wp-block-table {
 			overflow-x: auto;
 		}
@@ -126,9 +122,10 @@
 	}
 
 	&__navigation {
+		@include divider.top-dash;
+
 		max-width: 720px;
 		margin: 4rem auto 0;
-		border-top: 1px solid var(--obel-line, #cecece);
 		padding-top: 2rem;
 		display: flex;
 		justify-content: space-between;

@@ -1,0 +1,12 @@
+.wp-block-separator {
+	border-color: var(--obel-gold, #c29c69);
+	color: var(--obel-gold, #c29c69);
+
+	&:not(.is-style-wide):not(.is-style-dots) {
+		width: 5rem;
+		max-width: 100%;
+		margin: 3rem auto;
+		border: 0;
+		border-top: 3px solid var(--obel-gold, #c29c69);
+	}
+}

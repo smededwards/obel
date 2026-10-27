@@ -1,12 +1,31 @@
-.skip-link {
-	position: absolute;
-	left: 1rem;
-	top: -10rem;
-	padding: 0.5rem 1rem;
-	background: var(--obel-bg);
-	z-index: 100000;
+@use "../utilities/focus";
 
+.skip-link.screen-reader-text {
 	&:focus {
-		top: 1rem;
+		@include focus.ring;
+
+		position: fixed;
+		top: calc(var(--wp-admin--admin-bar--height, 0px) + 1rem);
+		left: max(1.5rem, calc((100% - 1120px) / 2));
+		max-width: calc(100% - 3rem);
+		padding: 0.75rem 1.25rem;
+		border: 2px solid var(--obel-ink);
+		border-radius: 0;
+		background: var(--obel-ink);
+		color: var(--obel-bg);
+		box-shadow: none;
+		font-family: "Noto Sans", sans-serif;
+		font-size: 1rem;
+		font-weight: 700;
+		line-height: 1.5;
+		text-decoration: none;
+		z-index: 100000;
+	}
+
+	@media (max-width: 360px) {
+		&:focus {
+			left: 1rem;
+			max-width: calc(100% - 2rem);
+		}
 	}
 }
