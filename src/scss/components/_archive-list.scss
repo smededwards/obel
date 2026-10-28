@@ -1,0 +1,25 @@
+@use "../utilities/motion";
+
+.archive-list {
+	display: grid;
+	gap: 2.5rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	> li > .archive-list__separator.wp-block-separator {
+		margin: 2.5rem auto 0;
+	}
+
+	> li:last-child > .archive-list__separator {
+		display: none;
+	}
+
+	@include motion.enabled {
+		@media (hover: hover) and (pointer: fine) {
+			> li:hover .archive-card__image img {
+				transform: scale(1.02);
+			}
+		}
+	}
+}

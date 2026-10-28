@@ -1,0 +1,30 @@
+.archive-page {
+	&__header {
+		max-width: 980px;
+		margin: 2.5rem auto 4rem;
+		text-align: center;
+
+		h1 {
+			margin: 0;
+			font-size: clamp(3.25rem, 8vw, 6rem);
+			font-weight: 600;
+		}
+	}
+
+	> p {
+		max-width: 65ch;
+		margin: 0 auto 3rem;
+		color: var(--obel-muted, #424245);
+	}
+
+	@media (max-width: 700px) {
+		&__header {
+			margin-block: 2rem 3rem;
+		}
+	}
+
+	&__intro {
+		max-width: 720px;
+		margin: 0 auto 4rem;
+	}
+}

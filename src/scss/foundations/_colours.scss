@@ -1,0 +1,31 @@
+
+:root {
+	color-scheme: light;
+	--obel-bg: #fff;
+	--obel-ink: #19191a;
+	--obel-muted: #424245;
+	--obel-line: #cecece;
+	--obel-panel: #f5f5f4;
+	--obel-accent: #a17943;
+	--obel-gold: #c29c69;
+}
+
+@mixin dark-mode {
+	color-scheme: dark;
+	--obel-bg: #19191a;
+	--obel-ink: #fff;
+	--obel-muted: #cecece;
+	--obel-line: #424245;
+	--obel-panel: #222224;
+	--obel-accent: #e8c9a0;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-colour-mode="light"]) {
+		@include dark-mode;
+	}
+}
+
+:root[data-colour-mode="dark"] {
+	@include dark-mode;
+}

@@ -1,0 +1,30 @@
+@use "../utilities/divider";
+
+.home-section {
+	@include divider.top-dash;
+
+	padding-block: 3.5rem;
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 1rem;
+		margin-bottom: 2rem;
+
+		h2 {
+			margin: 0;
+		}
+	}
+
+	&__note {
+		max-width: 60ch;
+		color: var(--obel-muted);
+	}
+
+	@media (max-width: 760px) {
+		&__header {
+			flex-wrap: wrap;
+		}
+	}
+}

@@ -1,0 +1,57 @@
+@use "../utilities/motion";
+
+.colour-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: auto;
+	height: auto;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	color: var(--obel-ink);
+	cursor: pointer;
+
+	&__icon {
+		display: block;
+	}
+
+	&:hover {
+		color: var(--obel-gold);
+	}
+
+	.wp-block-button__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		padding: 10px;
+		border: 0;
+		border-radius: 50%;
+		background: transparent;
+		color: var(--obel-ink);
+		font-size: 0;
+		cursor: pointer;
+
+		&::before {
+			content: "";
+			width: 24px;
+			height: 24px;
+			background: currentcolor;
+			mask: url(../assets/images/theme-toggle.svg) center / contain no-repeat;
+		}
+
+		&:hover {
+			color: var(--obel-gold);
+		}
+	}
+
+	.wp-block-button__link {
+		@include motion.enabled {
+			transition: color 160ms ease;
+		}
+	}
+}

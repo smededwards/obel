@@ -1,0 +1,12 @@
+@use "../utilities/focus";
+
+.wp-block-image,
+.wp-block-post-featured-image {
+	&:has(> a:focus-visible) {
+		@include focus.ring;
+
+		> a {
+			outline: none;
+		}
+	}
+}

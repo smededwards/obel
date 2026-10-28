@@ -1,22 +1,6 @@
 <?php
 /**
- * Minimal fallback template.
+ * Block templates in templates/index.html provide the theme fallback.
  *
  * @package Obel
  */
-
-get_header();
-?>
-<main id="main">
-	<?php
-	while ( have_posts() ) :
-		the_post();
-		?>
-		<article <?php post_class(); ?>>
-			<h1><?php the_title(); ?></h1>
-			<?php the_content(); ?>
-		</article>
-	<?php endwhile; ?>
-</main>
-<?php
-get_footer();
