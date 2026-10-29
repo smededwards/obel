@@ -47,7 +47,14 @@ final class Theme {
 		return $tags->get_updated_html();
 	}
 
-	/** Add the project title to the Work card excerpt link. */
+	/**
+	 * Add the project title to the Work card excerpt link.
+	 *
+	 * @param string    $content  Rendered excerpt markup.
+	 * @param array     $block    Parsed block data.
+	 * @param \WP_Block $instance Current block instance.
+	 * @return string Excerpt markup with a contextual link title.
+	 */
 	public function work_card_read_more( string $content, array $block, \WP_Block $instance ): string {
 		$classes = preg_split( '/\s+/', $block['attrs']['className'] ?? '', -1, PREG_SPLIT_NO_EMPTY );
 		if ( ! in_array( 'work-card__summary', $classes, true ) ) {
@@ -65,10 +72,20 @@ final class Theme {
 		}
 
 		$tags = new \WP_HTML_Tag_Processor( $content );
-		if ( ! $tags->next_tag( array( 'tag_name' => 'a', 'class_name' => 'wp-block-post-excerpt__more-link' ) ) ) {
+		if (
+			! $tags->next_tag(
+				array(
+					'tag_name'   => 'a',
+					'class_name' => 'wp-block-post-excerpt__more-link',
+				)
+			)
+		) {
 			return $content;
 		}
 
+		/*
+		 * translators: %s: Work item title.
+		 */
 		$tags->set_attribute( 'title', sprintf( __( 'Read more about %s', 'obel' ), $post_title ) );
 
 		return $tags->get_updated_html();
