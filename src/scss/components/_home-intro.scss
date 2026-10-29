@@ -1,6 +1,59 @@
+@mixin home-mark($top, $right, $z-index) {
+	height: 100svh;
+	width: 80vw;
+
+	background-image: url(../assets/images/home-mark.svg);
+	background-position: right calc(100% - 3.5rem);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	position: absolute;
+	right: $right;
+	top: $top;
+	z-index: $z-index;
+
+	content: "";
+	opacity: 0.45;
+	pointer-events: none;
+}
+
+body.home .wp-site-blocks {
+	position: relative;
+	isolation: isolate;
+
+	&::before {
+		@include home-mark(0, 0, 0);
+	}
+
+	> * {
+		position: relative;
+		z-index: 1;
+	}
+}
+
+body.home .entry-content > .wp-block-group:has(.home-intro),
+.editor-styles-wrapper .wp-block-group:has(.home-intro) {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+.editor-styles-wrapper .wp-block-group:has(.home-intro) {
+	position: relative;
+	isolation: isolate;
+
+	&::before {
+		@include home-mark(0, 0, 0);
+	}
+
+	> * {
+		position: relative;
+		z-index: 1;
+	}
+}
+
 .home-intro {
-	padding-block: clamp(3rem, 9vw, 7rem);
 	max-width: 850px;
+	padding-block: clamp(3rem, 9vw, 7rem);
 
 	h1 {
 		margin-block: 1rem 1.5rem;
@@ -9,13 +62,13 @@
 
 	&__copy {
 		max-width: 58ch;
+		color: var(--obel-ink);
 		font-size: clamp(1.1rem, 2vw, 1.3rem);
-		color: var(--obel-muted);
 	}
 
 	&__eyebrow {
+		color: var(--obel-ink);
 		font-family: "Noto Sans", sans-serif;
-		color: var(--obel-muted);
 		font-size: 0.75rem;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
@@ -25,5 +78,14 @@
 		& {
 			padding-block: 2rem 4rem;
 		}
+	}
+}
+
+@media (max-width: 760px) {
+	body.home .wp-site-blocks::before,
+	.editor-styles-wrapper .wp-block-group:has(.home-intro)::before {
+		height: 55svh;
+		background-position: calc(100% - 3rem) bottom;
+		width: 100vw;
 	}
 }
