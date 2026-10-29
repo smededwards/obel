@@ -111,3 +111,8 @@
 		}
 	}
 }
+
+body.home .wp-site-blocks:has(.site-nav .is-menu-open) > .wp-block-template-part:first-child {
+	position: relative;
+	z-index: 2;
+}
