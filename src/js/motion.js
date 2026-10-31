@@ -1,5 +1,7 @@
 /**
  * Enhance offscreen cards without hiding content while waiting for JavaScript.
+ *
+ * @return {void}
  */
 const initialiseCardMotion = () => {
 	if (
@@ -24,12 +26,23 @@ const initialiseCardMotion = () => {
 	const seen = new WeakSet();
 	let observer;
 
+	/**
+	 * Reveal a card immediately and stop observing it.
+	 *
+	 * @param {Element} card Card to reveal.
+	 * @return {void}
+	 */
 	const finish = ( card ) => {
 		seen.add( card );
 		observer?.unobserve( card );
 		card.classList.remove( 'card-reveal--enter' );
 	};
 
+	/**
+	 * Rebuild the observer using the current motion preference.
+	 *
+	 * @return {void}
+	 */
 	const prepare = () => {
 		observer?.disconnect();
 		cards.forEach( ( card ) =>
