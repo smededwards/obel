@@ -1,4 +1,4 @@
-/* Apply the saved preference before rendering; CSS handles the system default. */
+// Apply the saved preference before rendering; CSS handles the system default.
 try {
 	const preference = localStorage.getItem( 'obel-colour-mode' );
 	if ( preference === 'light' || preference === 'dark' ) {

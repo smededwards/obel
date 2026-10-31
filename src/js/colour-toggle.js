@@ -1,8 +1,20 @@
 const toggle = document.querySelector( '.colour-toggle button' );
 const system = window.matchMedia( '(prefers-color-scheme: dark)' );
+
+/**
+ * Resolve the active mode from the saved choice or system preference.
+ *
+ * @return {boolean} Whether dark mode is active.
+ */
 const isDark = () =>
 	( document.documentElement.dataset.colourMode ||
 		( system.matches ? 'dark' : 'light' ) ) === 'dark';
+
+/**
+ * Keep the toggle's pressed state aligned with the active mode.
+ *
+ * @return {void}
+ */
 const update = () => {
 	if ( toggle ) {
 		toggle.setAttribute( 'aria-pressed', String( isDark() ) );

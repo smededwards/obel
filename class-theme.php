@@ -7,9 +7,15 @@
 
 namespace Obel;
 
-/** Registers shared presentation behaviour. */
+/**
+ * Registers shared presentation behaviour.
+ */
 final class Theme {
-	/** Register hooks. */
+	/**
+	 * Register theme hooks.
+	 *
+	 * @return void
+	 */
 	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
@@ -20,12 +26,20 @@ final class Theme {
 		add_filter( 'render_block_core/post-excerpt', array( $this, 'work_card_read_more' ), 10, 3 );
 	}
 
-	/** Register editorial support. */
+	/**
+	 * Register editorial support.
+	 *
+	 * @return void
+	 */
 	public function setup(): void {
 		add_post_type_support( 'page', 'excerpt' );
 	}
 
-	/** Load the early colour preference before the first paint. */
+	/**
+	 * Load the early colour preference before the first paint.
+	 *
+	 * @return void
+	 */
 	public function assets(): void {
 		wp_enqueue_script( 'obel-colour-mode', get_template_directory_uri() . '/assets/colour-mode.js', array(), (string) filemtime( get_template_directory() . '/assets/colour-mode.js' ), false );
 	}
