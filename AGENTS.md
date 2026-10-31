@@ -25,6 +25,12 @@
 
 - Prefer native WordPress blocks and editor controls wherever they meet the requirement. Use Page List for page navigation and Query Loop for dynamic card layouts; introduce custom blocks, shortcodes or renderers only for an agreed gap in core.
 
+## Responsive breakpoints
+
+- Use the standard WordPress viewport thresholds as the default guide for responsive design: `huge` 1440px, `wide` 1280px, `large` 960px, `medium` 782px, `small` 600px and `mobile` 480px.
+- Keep theme layout breakpoints aligned with these values in the shared SCSS breakpoint tokens. Add a component-specific breakpoint only when its layout needs a precise fit adjustment, and document the reason in context.
+- The `@wordpress/viewport` package is for editor interfaces that need to respond to viewport state. Use CSS media queries for theme layout responsiveness; do not add frontend JavaScript viewport logic for styling alone.
+
 ## SCSS formatting
 
 - Follow the expanded formatting in the current SCSS sources, including rules with just one declaration. Put the opening brace on the selector line, declarations on separate indented lines, and the closing brace on its own line. Never compress a rule into one line.

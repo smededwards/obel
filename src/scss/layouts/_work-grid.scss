@@ -1,11 +1,12 @@
 @use "../utilities/motion";
+@use "../foundations/breakpoints" as breakpoints;
 
 .work-grid {
 	display: grid !important;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 1.5rem;
 
-	@media (max-width: 760px) {
+	@media (max-width: breakpoints.$medium) {
 		& {
 			grid-template-columns: 1fr;
 			gap: 2rem;

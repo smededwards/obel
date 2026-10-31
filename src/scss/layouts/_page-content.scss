@@ -1,14 +1,27 @@
+@use "../foundations/breakpoints" as breakpoints;
+
 .page-content {
 	min-height: 55vh;
 	padding-block: 3rem 5rem;
+
+	&__header {
+		margin: 2.5rem auto 4rem;
+		max-width: 980px;
+
+		text-align: center;
+	}
 
 	> article > p {
 		max-width: 68ch;
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: breakpoints.$medium) {
 		& {
 			padding-top: 1rem;
+		}
+
+		&__header {
+			margin-block: 2rem 3rem;
 		}
 	}
 }

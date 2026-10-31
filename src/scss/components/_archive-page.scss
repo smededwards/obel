@@ -1,3 +1,5 @@
+@use "../foundations/breakpoints" as breakpoints;
+
 .archive-page {
 	&__header {
 		max-width: 980px;
@@ -17,7 +19,7 @@
 		color: var(--obel-muted, #424245);
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: breakpoints.$small) {
 		&__header {
 			margin-block: 2rem 3rem;
 		}
@@ -26,5 +28,14 @@
 	&__intro {
 		max-width: 720px;
 		margin: 0 auto 4rem;
+	}
+
+	&__description {
+		margin: 1.5rem auto 0;
+		max-width: 65ch;
+
+		color: var(--obel-muted, #424245);
+		font-size: 1rem;
+		line-height: 1.7;
 	}
 }
