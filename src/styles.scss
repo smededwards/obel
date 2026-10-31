@@ -6,7 +6,10 @@
 @use "scss/layouts/site-shell";
 @use "scss/layouts/page-content";
 @use "scss/layouts/work-grid";
+@use "scss/layouts/home-grids";
 @use "scss/components/archive-page";
+@use "scss/components/about-page";
+@use "scss/components/contact-page";
 @use "scss/components/archive-list";
 @use "scss/components/archive-card";
 @use "scss/components/archive-pagination";

@@ -1,3 +1,5 @@
+@use "../foundations/breakpoints" as breakpoints;
+
 .site-nav {
 	&__list {
 		display: flex;
@@ -26,7 +28,7 @@
 		}
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: breakpoints.$medium) {
 		&__list {
 			gap: 1rem;
 			font-size: 0.8rem;

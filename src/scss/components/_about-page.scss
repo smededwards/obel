@@ -1,0 +1,49 @@
+@use "../foundations/breakpoints" as breakpoints;
+
+.about-page {
+	&__intro {
+		margin-block: 0 5rem;
+
+		align-items: center;
+		gap: clamp(2rem, 6vw, 5rem);
+	}
+
+	&__portrait {
+		margin: 0;
+		max-width: 340px;
+
+		img {
+			aspect-ratio: 4 / 5;
+			border-radius: 2px;
+
+			object-fit: cover;
+		}
+	}
+
+	&__summary {
+		margin: 0;
+		max-width: 62ch;
+	}
+
+	&__lead {
+		font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+		line-height: 1.5;
+	}
+
+	> .wp-block-heading {
+		margin-block-start: 3rem;
+	}
+
+	@media (max-width: breakpoints.$medium) {
+		&__intro {
+			margin-block-end: 3rem;
+
+			gap: 1.5rem;
+		}
+
+		&__portrait {
+			margin-inline: auto;
+			max-width: 280px;
+		}
+	}
+}
