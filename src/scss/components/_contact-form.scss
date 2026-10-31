@@ -1,3 +1,4 @@
+@use "../utilities/focus";
 @use "../utilities/motion";
 
 .contact-form {
@@ -90,8 +91,7 @@
 	button:focus-visible,
 	a:focus-visible,
 	[tabindex="-1"]:focus {
-		outline: 2px solid var(--obel-accent, #a17943);
-		outline-offset: 3px;
+		@include focus.ring;
 	}
 
 	&__submit {
