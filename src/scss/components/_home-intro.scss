@@ -1,3 +1,5 @@
+@use "../utilities/motion" as motion;
+
 @mixin home-mark($top, $right, $z-index) {
 	height: 100svh;
 	width: 80vw;
@@ -73,6 +75,24 @@ body.home .entry-content > .wp-block-group:has(.home-intro),
 	.editor-styles-wrapper .wp-site-blocks:has(.home-intro)::before {
 		height: 55svh;
 		background-position: calc(100% - 3rem) bottom;
+		background-size: 100% auto;
 		width: 100vw;
+	}
+}
+
+@include motion.enabled {
+	body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks::before,
+	.editor-styles-wrapper .wp-site-blocks:has(.home-intro)::before {
+		animation: obel-home-mark-fade-in 700ms ease-out both;
+	}
+
+	@keyframes obel-home-mark-fade-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 0.45;
+		}
 	}
 }
