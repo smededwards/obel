@@ -9,9 +9,15 @@
 		font-size: 0.875rem;
 
 		a {
+			min-height: 44px;
+			min-width: 44px;
+			padding: 0.5rem 0.25rem;
+
+			align-items: center;
+			display: inline-flex;
+
 			font-weight: 700;
 			text-decoration: none;
-			padding-block: 0.5rem;
 		}
 
 		[aria-current="page"] {
@@ -30,6 +36,11 @@
 	&.wp-block-navigation {
 		font-size: 0.875rem;
 		font-weight: 700;
+
+		.wp-block-navigation__responsive-container-open {
+			min-height: 44px;
+			min-width: 44px;
+		}
 
 		.wp-block-navigation-item__content {
 			&:hover {
@@ -83,11 +94,12 @@
 				position: fixed;
 				top: 1.5rem;
 				right: 1.5rem;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 44px;
 				height: 44px;
+				width: 44px;
+
+				align-items: center;
+				display: flex;
+				justify-content: center;
 			}
 		}
 	}

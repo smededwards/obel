@@ -34,12 +34,22 @@
 	}
 
 	&__logo {
+		height: 44px;
+		margin: 0;
+		width: 44px;
+
 		grid-column: 2;
 		grid-row: 1;
 		justify-self: center;
-		width: 26px;
-		height: 32px;
-		margin: 0;
+
+		> a {
+			min-height: 44px;
+			min-width: 44px;
+
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
 	}
 
 	&__actions {
@@ -51,6 +61,14 @@
 
 	&__contact {
 		margin: 0;
+
+		a {
+			min-height: 44px;
+			padding-block: 0.25rem;
+
+			align-items: center;
+			display: inline-flex;
+		}
 	}
 
 	@media (max-width: 760px) {

@@ -16,9 +16,26 @@
 	}
 
 	&__logo {
+		height: 75px;
 		width: 44px;
-		height: 54px;
+
 		flex-shrink: 0;
+
+		a {
+			min-height: 44px;
+			min-width: 44px;
+
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
+
+		img {
+			height: auto !important;
+			width: auto !important;
+			max-width: 36px !important;
+			max-height: 75px !important;
+		}
 	}
 
 	.wp-block-site-logo {

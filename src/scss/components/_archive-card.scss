@@ -1,5 +1,12 @@
 @use "../utilities/motion";
 
+.wp-block-post-template .wp-block-post-title a {
+	min-height: 44px;
+	padding-block: 0.5rem;
+
+	display: inline-block;
+}
+
 .archive-card {
 	&__image {
 		margin: 0 0 1.5rem;
