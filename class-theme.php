@@ -13,7 +13,7 @@ final class Theme {
 	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
-		add_filter( 'aeon_seo_person_schema', array( $this, 'person_schema' ), 10, 2 );
+		add_filter( 'aeon_seo_person_schema', array( $this, 'person_schema' ) );
 		add_filter( 'wp_robots', array( $this, 'noindex_taxonomy_archives' ), 100 );
 		add_filter( 'wp_sitemaps_taxonomies', array( $this, 'exclude_taxonomies_from_sitemap' ) );
 		add_filter( 'render_block_core/button', array( $this, 'colour_toggle' ), 10, 2 );
@@ -33,11 +33,10 @@ final class Theme {
 	/**
 	 * Add verified portfolio identity details to Aeon's Person schema node.
 	 *
-	 * @param array    $person Person schema properties supplied by Aeon.
-	 * @param \WP_Post $post   Current public page or post.
+	 * @param array $person Person schema properties supplied by Aeon.
 	 * @return array Person schema with the site's professional identity.
 	 */
-	public function person_schema( array $person, \WP_Post $post ): array {
+	public function person_schema( array $person ): array {
 		$person['jobTitle'] = __( 'Senior WordPress Engineer', 'obel' );
 		$person['sameAs']   = array(
 			'https://www.linkedin.com/in/smededwards/',
@@ -53,7 +52,7 @@ final class Theme {
 
 		static $profile_image_url = null;
 		if ( null === $profile_image_url ) {
-			$profile_image = get_page_by_path( 'profile', OBJECT, 'attachment' );
+			$profile_image     = get_page_by_path( 'profile', OBJECT, 'attachment' );
 			$profile_image_url = $profile_image instanceof \WP_Post
 				? wp_get_attachment_image_url( $profile_image->ID, 'full' )
 				: false;
