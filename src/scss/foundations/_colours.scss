@@ -29,3 +29,25 @@
 :root[data-colour-mode="dark"] {
 	@include dark-mode;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+	::view-transition-old(root) {
+		animation: obel-colour-fade-out 180ms ease-in both;
+	}
+
+	::view-transition-new(root) {
+		animation: obel-colour-fade-in 180ms ease-out both;
+	}
+
+	@keyframes obel-colour-fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes obel-colour-fade-in {
+		from {
+			opacity: 0;
+		}
+	}
+}
