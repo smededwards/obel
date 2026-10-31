@@ -13,6 +13,9 @@ final class Theme {
 	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
+		add_filter( 'aeon_seo_person_schema', array( $this, 'person_schema' ), 10, 2 );
+		add_filter( 'wp_robots', array( $this, 'noindex_taxonomy_archives' ), 100 );
+		add_filter( 'wp_sitemaps_taxonomies', array( $this, 'exclude_taxonomies_from_sitemap' ) );
 		add_filter( 'render_block_core/button', array( $this, 'colour_toggle' ), 10, 2 );
 		add_filter( 'render_block_core/post-excerpt', array( $this, 'work_card_read_more' ), 10, 3 );
 	}
@@ -25,6 +28,72 @@ final class Theme {
 	/** Load the early colour preference before the first paint. */
 	public function assets(): void {
 		wp_enqueue_script( 'obel-colour-mode', get_template_directory_uri() . '/assets/colour-mode.js', array(), (string) filemtime( get_template_directory() . '/assets/colour-mode.js' ), false );
+	}
+
+	/**
+	 * Add verified portfolio identity details to Aeon's Person schema node.
+	 *
+	 * @param array    $person Person schema properties supplied by Aeon.
+	 * @param \WP_Post $post   Current public page or post.
+	 * @return array Person schema with the site's professional identity.
+	 */
+	public function person_schema( array $person, \WP_Post $post ): array {
+		$person['jobTitle'] = __( 'Senior WordPress Engineer', 'obel' );
+		$person['sameAs']   = array(
+			'https://www.linkedin.com/in/smededwards/',
+			'https://github.com/smededwards',
+		);
+		$about_page         = get_page_by_path( 'about', OBJECT, 'page' );
+		if ( $about_page instanceof \WP_Post && is_post_publicly_viewable( $about_page ) ) {
+			$description = trim( wp_strip_all_tags( get_the_excerpt( $about_page ) ) );
+			if ( '' !== $description ) {
+				$person['description'] = $description;
+			}
+		}
+
+		static $profile_image_url = null;
+		if ( null === $profile_image_url ) {
+			$profile_image = get_page_by_path( 'profile', OBJECT, 'attachment' );
+			$profile_image_url = $profile_image instanceof \WP_Post
+				? wp_get_attachment_image_url( $profile_image->ID, 'full' )
+				: false;
+		}
+
+		if ( $profile_image_url ) {
+			$person['image'] = $profile_image_url;
+		}
+
+		return $person;
+	}
+
+	/**
+	 * Keep category and tag archives available to visitors without indexing them.
+	 *
+	 * @param array $robots Existing robots directives.
+	 * @return array Robots directives with taxonomy archives set to noindex,follow.
+	 */
+	public function noindex_taxonomy_archives( array $robots ): array {
+		if ( ! is_category() && ! is_tag() ) {
+			return $robots;
+		}
+
+		unset( $robots['index'], $robots['nofollow'] );
+		$robots['noindex'] = true;
+		$robots['follow']  = true;
+
+		return $robots;
+	}
+
+	/**
+	 * Keep taxonomy archive URLs out of the native WordPress sitemap.
+	 *
+	 * @param array $taxonomies Public taxonomy objects keyed by taxonomy name.
+	 * @return array Taxonomies available to the sitemap provider.
+	 */
+	public function exclude_taxonomies_from_sitemap( array $taxonomies ): array {
+		unset( $taxonomies['category'], $taxonomies['post_tag'] );
+
+		return $taxonomies;
 	}
 
 	/**
