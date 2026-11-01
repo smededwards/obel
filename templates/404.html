@@ -1,10 +1,36 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","anchor":"main","className":"site-shell page-content ","layout":{"type":"default"}} -->
-<main id="main" class="wp-block-group site-shell page-content ">
-<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Page not found</h1><!-- /wp:heading -->
-<!-- wp:paragraph --><p>This page could not be found. Try searching below.</p><!-- /wp:paragraph -->
-<!-- wp:search {"label":"Search","buttonText":"Search"} /-->
+<!-- wp:group {"tagName":"main","anchor":"main","className":"site-shell page-content error-page","layout":{"type":"default"}} -->
+<main id="main" class="wp-block-group site-shell page-content error-page">
+<!-- wp:group {"tagName":"header","className":"error-page__header","layout":{"type":"default"}} -->
+<header class="wp-block-group error-page__header">
+<!-- wp:heading {"level":1} --><h1 class="wp-block-heading">Page Not Found</h1><!-- /wp:heading -->
+<!-- wp:paragraph --><p>The page you’re looking for isn’t here. Try one of these instead.</p><!-- /wp:paragraph -->
+</header>
+<!-- /wp:group -->
+<!-- wp:group {"className":"error-page__section","layout":{"type":"default"}} -->
+<div class="wp-block-group error-page__section">
+<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Selected Projects</h2><!-- /wp:heading -->
+<!-- wp:query {"queryId":0,"query":{"inherit":false,"perPage":3,"pages":0,"offset":0,"postType":"page","order":"asc","orderBy":"menu_order","parents":[31]},"layout":{"type":"default"}} -->
+<div class="wp-block-query"><!-- wp:post-template {"className":"collection-grid","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"archive-card","layout":{"type":"default"}} -->
+<div class="wp-block-group archive-card"><!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium_large","aspectRatio":"4/3","className":"archive-card__image"} /--><!-- wp:group {"className":"archive-card__content","layout":{"type":"default"}} --><div class="wp-block-group archive-card__content"><!-- wp:post-title {"level":3,"isLink":true,"className":"archive-card__title"} /--></div><!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- /wp:post-template --><!-- wp:query-no-results --><!-- wp:paragraph --><p>Projects are being prepared.</p><!-- /wp:paragraph --><!-- /wp:query-no-results --></div><!-- /wp:query -->
+</div>
+<!-- /wp:group -->
+<!-- wp:group {"className":"error-page__section","layout":{"type":"default"}} -->
+<div class="wp-block-group error-page__section">
+<!-- wp:heading {"level":2} --><h2 class="wp-block-heading">Latest Posts</h2><!-- /wp:heading -->
+<!-- wp:query {"queryId":1,"query":{"inherit":false,"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date"},"layout":{"type":"default"}} -->
+<div class="wp-block-query"><!-- wp:post-template {"className":"archive-list","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"archive-card archive-card--text","layout":{"type":"default"}} -->
+<div class="wp-block-group archive-card archive-card--text"><!-- wp:group {"className":"archive-card__content","layout":{"type":"default"}} --><div class="wp-block-group archive-card__content"><!-- wp:post-title {"level":3,"isLink":true,"className":"archive-card__title"} /--><!-- wp:post-date {"format":"j M Y","className":"archive-card__meta"} /--></div><!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- wp:separator {"className":"archive-list__separator"} --><hr class="wp-block-separator has-alpha-channel-opacity archive-list__separator"/><!-- /wp:separator -->
+<!-- /wp:post-template --><!-- wp:query-no-results --><!-- wp:paragraph --><p>No posts published yet.</p><!-- /wp:paragraph --><!-- /wp:query-no-results --></div><!-- /wp:query -->
+</div>
+<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 

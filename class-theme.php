@@ -41,7 +41,7 @@ final class Theme {
 	 * @return void
 	 */
 	public function assets(): void {
-		wp_enqueue_script( 'obel-colour-mode', get_template_directory_uri() . '/assets/colour-mode.js', array(), (string) filemtime( get_template_directory() . '/assets/colour-mode.js' ), false );
+		obel_enqueue_entry( 'colour-mode-preference', false );
 	}
 
 	/**
@@ -168,7 +168,9 @@ final class Theme {
 		/*
 		 * translators: %s: Work item title.
 		 */
-		$tags->set_attribute( 'title', sprintf( __( 'Read more about %s', 'obel' ), $post_title ) );
+		$read_more_label = sprintf( __( 'Read more about %s', 'obel' ), $post_title );
+		$tags->set_attribute( 'aria-label', $read_more_label );
+		$tags->set_attribute( 'title', $read_more_label );
 
 		return $tags->get_updated_html();
 	}
