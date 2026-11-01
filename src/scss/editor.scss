@@ -8,4 +8,13 @@
 	--obel-gold: #c29c69;
 	background: var(--obel-bg);
 	color: var(--obel-ink);
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--obel-ink);
+	}
 }
