@@ -28,13 +28,6 @@
 		}
 	}
 
-	@media (max-width: breakpoints.$medium) {
-		&__list {
-			gap: 1rem;
-			font-size: 0.8rem;
-		}
-	}
-
 	&.wp-block-navigation {
 		font-size: 0.875rem;
 		font-weight: 700;
@@ -42,6 +35,10 @@
 		.wp-block-navigation__responsive-container-open {
 			min-height: 44px;
 			min-width: 44px;
+
+			align-items: center;
+			display: flex;
+			justify-content: center;
 		}
 
 		.wp-block-navigation-item__content {
@@ -106,7 +103,23 @@
 		}
 	}
 
-	@media (min-width: 323px) {
+	@media (max-width: breakpoints.$medium) {
+		&__list {
+			gap: 1rem;
+
+			font-size: 1rem;
+		}
+
+		&.wp-block-navigation {
+			font-size: 1rem;
+
+			.wp-block-navigation__container {
+				gap: 1rem;
+			}
+		}
+	}
+
+	@media (min-width: 481px) {
 		&.wp-block-navigation {
 			.wp-block-navigation__responsive-container-open:not(.always-shown) {
 				display: none;

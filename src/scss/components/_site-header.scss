@@ -109,6 +109,22 @@
 					column-gap: 1rem;
 				}
 			}
+
+			@media (max-width: breakpoints.$mobile) {
+				grid-template-columns: minmax(0, 1fr) auto auto;
+				column-gap: 0.25rem;
+
+				.site-nav {
+					grid-column: 2;
+					grid-row: 1;
+					justify-self: end;
+					width: auto;
+				}
+
+				.site-header__toggle {
+					grid-column: 3;
+				}
+			}
 		}
 	}
 
@@ -139,13 +155,10 @@
 		}
 	}
 
-	@media (min-width: 323px) and (max-width: breakpoints.$small) {
-		&.site-shell .site-nav {
-			font-size: 0.8rem;
-
-			.wp-block-navigation__container {
-				column-gap: 0.75rem;
-			}
+	@media (max-width: breakpoints.$tiny) {
+		&__name {
+			display: none;
 		}
 	}
+
 }
