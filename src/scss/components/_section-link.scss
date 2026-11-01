@@ -1,4 +1,12 @@
 .section-link {
 	font-family: "Noto Sans", sans-serif;
 	font-size: 0.875rem;
+
+	a {
+		min-height: 44px;
+		padding: 0.25rem 0.5rem;
+
+		align-items: center;
+		display: inline-flex;
+	}
 }

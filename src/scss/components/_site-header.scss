@@ -1,3 +1,5 @@
+@use "../foundations/breakpoints" as breakpoints;
+
 .site-header {
 	font-family: "Noto Sans", sans-serif;
 	display: flex;
@@ -16,9 +18,39 @@
 	}
 
 	&__logo {
+		height: 75px;
 		width: 44px;
-		height: 54px;
+
 		flex-shrink: 0;
+
+		a {
+			min-height: 44px;
+			min-width: 44px;
+
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
+
+		img {
+			height: auto !important;
+			width: auto !important;
+			max-width: 36px !important;
+			max-height: 75px !important;
+		}
+	}
+
+	.wp-block-site-logo {
+		flex-shrink: 0;
+		margin: 0;
+
+		img {
+			display: block;
+			width: auto;
+			height: 54px;
+			max-width: 44px;
+			object-fit: contain;
+		}
 	}
 
 	&__controls {
@@ -27,7 +59,7 @@
 		gap: 1.5rem;
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: breakpoints.$medium) {
 		& {
 			flex-wrap: wrap;
 			gap: 1.25rem;
@@ -100,13 +132,13 @@
 		}
 	}
 
-	@media (max-width: 599px) {
+	@media (max-width: breakpoints.$small) {
 		&__name {
 			font-size: 0.95rem;
 		}
 	}
 
-	@media (min-width: 323px) and (max-width: 599px) {
+	@media (min-width: 323px) and (max-width: breakpoints.$small) {
 		&.site-shell .site-nav {
 			font-size: 0.8rem;
 

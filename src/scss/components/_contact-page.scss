@@ -1,0 +1,29 @@
+@use "../foundations/breakpoints" as breakpoints;
+
+.contact-page {
+	margin-inline: auto;
+	max-width: 760px;
+
+	&__intro {
+		margin-block: 0 2.5rem;
+
+		font-size: clamp(1.25rem, 2vw, 1.6rem);
+		line-height: 1.6;
+	}
+
+	&__form {
+		margin-block-start: 1rem;
+	}
+
+	&__social {
+		margin-block: 2rem 0;
+
+		color: var(--obel-muted, #424245);
+	}
+
+	@media (max-width: breakpoints.$small) {
+		&__intro {
+			margin-block-end: 2rem;
+		}
+	}
+}

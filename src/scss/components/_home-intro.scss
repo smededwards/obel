@@ -1,6 +1,49 @@
+@use "../utilities/motion" as motion;
+@use "../foundations/breakpoints" as breakpoints;
+
+@mixin home-mark($top, $right, $z-index) {
+	height: 100svh;
+	width: 80vw;
+
+	background-image: url(../assets/images/home-mark.svg);
+	background-position: right calc(100% - 3.5rem);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	position: absolute;
+	right: $right;
+	top: $top;
+	z-index: $z-index;
+
+	content: "";
+	opacity: 0.45;
+	pointer-events: none;
+}
+
+body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks,
+.editor-styles-wrapper .wp-site-blocks:has(.home-intro) {
+	position: relative;
+	isolation: isolate;
+
+	&::before {
+		@include home-mark(0, 0, 0);
+	}
+
+	> * {
+		position: relative;
+		z-index: 1;
+	}
+}
+
+body.home .entry-content > .wp-block-group:has(.home-intro),
+.editor-styles-wrapper .wp-block-group:has(.home-intro) {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
 .home-intro {
-	padding-block: clamp(3rem, 9vw, 7rem);
 	max-width: 850px;
+	padding-block: clamp(3rem, 9vw, 7rem);
 
 	h1 {
 		margin-block: 1rem 1.5rem;
@@ -9,21 +52,53 @@
 
 	&__copy {
 		max-width: 58ch;
+		color: var(--obel-ink);
 		font-size: clamp(1.1rem, 2vw, 1.3rem);
-		color: var(--obel-muted);
 	}
 
 	&__eyebrow {
+		color: var(--obel-ink);
 		font-family: "Noto Sans", sans-serif;
-		color: var(--obel-muted);
 		font-size: 0.75rem;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
 	}
 
-	@media (max-width: 760px) {
+	@media (max-width: breakpoints.$medium) {
 		& {
 			padding-block: 2rem 4rem;
+		}
+	}
+}
+
+@media (max-width: breakpoints.$large) {
+	body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks::before,
+	.editor-styles-wrapper .wp-site-blocks:has(.home-intro)::before {
+		aspect-ratio: 245 / 256;
+		background-position: center top;
+		background-size: 100% 100%;
+		height: auto;
+		left: 50%;
+		right: auto;
+		top: -4rem;
+		transform: translateX(-50%);
+		width: clamp(240px, 85vw, 520px);
+	}
+}
+
+@include motion.enabled {
+	body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks::before,
+	.editor-styles-wrapper .wp-site-blocks:has(.home-intro)::before {
+		animation: obel-home-mark-fade-in 700ms ease-out both;
+	}
+
+	@keyframes obel-home-mark-fade-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 0.45;
 		}
 	}
 }

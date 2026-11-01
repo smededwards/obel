@@ -7,16 +7,26 @@
 
 namespace Obel;
 
-/** Keeps useful responsive sizes without generating overlapping core variants. */
+/**
+ * Keeps useful responsive sizes without generating overlapping core variants.
+ */
 final class Images {
 
-	/** Register generation policy and activation defaults. */
+	/**
+	 * Register image generation policy and activation defaults.
+	 *
+	 * @return void
+	 */
 	public function register(): void {
 		add_filter( 'intermediate_image_sizes', array( $this, 'generated_sizes' ) );
 		add_action( 'after_switch_theme', array( $this, 'defaults' ) );
 	}
 
-	/** Apply native, administrator-editable Media settings on theme activation. */
+	/**
+	 * Apply native, administrator-editable Media settings on theme activation.
+	 *
+	 * @return void
+	 */
 	public function defaults(): void {
 		foreach ( array(
 			'thumbnail_size_w'   => 150,

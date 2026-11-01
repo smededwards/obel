@@ -9,6 +9,17 @@
 - Keep PR descriptions focused on the core premise and features, using one short paragraph or a few brief bullets plus a short validation line. Omit implementation inventories and work logs unless necessary for review. Use British English in documentation.
 - Never commit secrets, certificates, local environment files, uploads or generated dependency directories.
 
+## Engineering principles
+
+Apply these principles while planning, implementing and reviewing every change across PHP, JavaScript, SCSS, templates, configuration and documentation. Before considering work complete, check it against each principle:
+
+- **KISS:** Choose the simplest clear solution that meets the requirement; avoid needless layers and cleverness.
+- **DRY:** Keep each piece of knowledge and behaviour in one appropriate place. Share genuine common logic, but do not create abstractions for superficial similarities.
+- **SOLID:** Keep responsibilities focused, dependencies clear and interfaces small. Use extension points and abstractions where they improve maintainability, not as a goal in themselves.
+- **YAGNI:** Build for current requirements and agreed plans. Avoid speculative features, configuration and generalisation.
+
+- After a feature has been agreed and implemented, run the Ponytail `/ponytail-review` review on the completed changes before treating the feature as complete or opening a PR. Address actionable findings and report any deferred findings. Keep this review separate from automated lint and build checks.
+
 ## Branch and release workflow
 
 - Create focused feature branches from the latest `dev`; target feature PRs at `dev` and squash-merge using their Conventional Commit titles.
@@ -19,9 +30,17 @@
 
 - Prefer returned markup built with `sprintf()` in PHP helpers. Use escaped `printf()` only at template or WordPress callback output boundaries, and `fwrite(STDOUT, ...)` in standalone CLI scripts; avoid direct `echo` statements. Escape dynamic values for their actual HTML, attribute or URL context. Formatting and returning values do not replace validation, capability checks or escaping.
 
+- Document each PHP and JavaScript function/method with an adequate DocBlock/JSDoc: a concise purpose, descriptions for each parameter, and a return description/type when applicable. Add documentation to callbacks when their purpose or contract is not self-evident. Use `//` for ordinary single-line comments; reserve PHPDoc/JSDoc blocks for function documentation, and use multiline block comments for longer notes or required WordPress translator comments.
+
 - Use BEM for custom HTML and SCSS classes: `block`, `block__element`, `block--modifier` or `block__element--modifier`. Preserve WordPress-owned classes and keep block metadata, saved markup and selectors aligned when renaming classes.
 
 - Prefer native WordPress blocks and editor controls wherever they meet the requirement. Use Page List for page navigation and Query Loop for dynamic card layouts; introduce custom blocks, shortcodes or renderers only for an agreed gap in core.
+
+## Responsive breakpoints
+
+- Use the standard WordPress viewport thresholds as the default guide for responsive design: `huge` 1440px, `wide` 1280px, `large` 960px, `medium` 782px, `small` 600px and `mobile` 480px.
+- Keep theme layout breakpoints aligned with these values in the shared SCSS breakpoint tokens. Add a component-specific breakpoint only when its layout needs a precise fit adjustment, and document the reason in context.
+- The `@wordpress/viewport` package is for editor interfaces that need to respond to viewport state. Use CSS media queries for theme layout responsiveness; do not add frontend JavaScript viewport logic for styling alone.
 
 ## SCSS formatting
 
@@ -29,8 +48,10 @@
 - Indent with tabs (display width 4), use LF line endings and retain a final newline. Remove trailing whitespace.
 - Put every selector in a comma-separated selector list on its own line, including nested selectors and pseudo-classes.
 - Use one blank line between sibling rules or sections. Do not add a blank line immediately after an opening brace or before a closing brace, including in media queries, mixins and nested rules.
-- Use a space after declaration colons, trailing semicolons, and no padding inside function parentheses. Preserve meaningful declaration order; do not reorder properties as part of formatting.
+- Use a space after declaration colons, trailing semicolons, and no padding inside function parentheses.
 - Organise SCSS by responsibility: `src/scss/foundations/` for fonts, colour tokens and element defaults; `src/scss/layouts/` for shared layout integration; `src/scss/components/` for BEM blocks; `src/scss/utilities/` for shared behaviour such as motion. Keep only `scripts.js` and `styles.scss` directly in `src/`. Place supporting JavaScript in `src/js/` and SCSS in `src/scss/`; the frontend and editor JavaScript entries import the shared root style entry.
 - Keep each BEM component’s elements, modifiers, interaction states and responsive rules in its own partial. Use `&__element`, `&--modifier` and nested `&:hover` / `&:focus-visible` where appropriate, with shallow nesting. Preserve native WordPress classes and avoid files for individual BEM elements.
 - Preserve compiled selector specificity and intentional cascade order during refactors; verify frontend and editor asset paths after entry-point renames.
 - `npm run lint:scss` enforces this style through WordPress's SCSS stylistic preset and the local overrides. Use `npm run lint:scss:fix` for formatting corrections, and check the diff to preserve the author's values and layout choices.
+
+- Group CSS/SCSS declarations in this order: box model (dimensions, margins, padding, borders and sizing), background, layout (display, positioning, flex/grid and alignment), type (colour, fonts, line height and text properties), then other (effects, transforms, transitions and remaining properties). Alphabetise properties within each group, and separate non-empty groups with a blank line. Use blank lines to show the groups; do not add group-label comments. Preserve order where repeated declarations, fallbacks, or shorthand/longhand interactions depend on it; keep those declarations together and document non-obvious exceptions. This concerns CSS properties, not HTML attributes or selector order. Apply it to new and edited rules; handle existing stylesheets in a dedicated refactor.

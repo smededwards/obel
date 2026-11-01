@@ -1,79 +1,83 @@
 # Obel
 
-A block portfolio theme using native HTML block templates, editable template parts and core-block page content.
+Obel is a WordPress block theme for the portfolio. It uses HTML templates, editable template parts and core blocks for page content.
 
-Develop alongside `portfolio`, `obel`, `aeon` and `rune`. Use the site Makefile to run all tools inside containers. This repository has its own Composer lock and checks.
+## Name
 
-Run `npm ci`, `npm run build`, `npm run start`, `npm run lint:js` and `npm run lint:scss` inside the Node container. Generated `build/` assets are assembled in site CI, not committed.
+Obel is shortened from *obelisk*. Its architectural associations of structure and permanence suit a theme that provides a restrained foundation for a site and remains useful on its own.
+
+Develop Obel alongside `portfolio`, `aeon` and `rune`. The site Makefile runs tools in containers. Obel has its own Composer lock and checks.
+
+Run `npm ci`, `npm run build`, `npm run start`, `npm run lint:js` and `npm run lint:scss` in the Node container. Site CI builds the generated assets; `build/` files are not committed.
 
 Run `composer install` and `composer lint` in the PHP tools container. CI also syntax-checks PHP.
 
-For release, publish this repository separately and create a semantic version tag after checks pass. The site must require a real tag and update its production lock. Do not deploy a local path dependency.
+After checks pass, publish Obel separately and create a semantic version tag. Update the site’s production lock to use that tag. Production must use tagged releases rather than local path dependencies.
 
 ## Media sizes
 
-Obel keeps three generated core sizes: a 150×150 cropped Thumbnail for media previews, Medium within 640×640, and Large within 1120×1120. Medium and Large preserve the source aspect ratio; WordPress does not upscale smaller uploads. The full-size image remains available to responsive images, including higher-density displays. WordPress’s normal handling of oversized originals is preserved.
+Obel generates three core image sizes: a cropped 150×150 Thumbnail, Medium up to 640×640 and Large up to 1120×1120. Medium and Large preserve the source aspect ratio. WordPress does not enlarge smaller uploads. The full-size original remains available for responsive images and higher-density displays, and WordPress handles oversized originals as usual.
 
-`class-images.php` excludes the overlapping core `medium_large`, `1536x1536` and `2048x2048` sizes from generation while preserving any additional sizes registered by plugins. On theme activation it sets the native Settings → Media dimensions and the default editor insertion size to Large. Administrators can subsequently adjust the Media settings; nothing rewrites them on each request. Existing media needs regeneration after changing sizes.
+`class-images.php` skips the overlapping core `medium_large`, `1536x1536` and `2048x2048` sizes while preserving sizes added by plugins. When the theme is activated, it sets the Settings → Media dimensions and default editor insertion size to Large. Administrators can change these settings later; Obel does not reset them on each request. Regenerate existing media after changing the sizes.
 
 ## Contribution conventions
 
-Use Conventional Commit subjects and PR titles, for example `feat(theme): add navigation` or `fix(blocks): correct editor styles`. The repository's first commit is the explicit exception: `Initial Commit`. PR CI validates titles and every commit in the PR. See `AGENTS.md` for repository guidance.
+Use Conventional Commit subjects and PR titles, such as `feat(theme): add navigation` or `fix(blocks): correct editor styles`. Name the first commit `Initial Commit`. PR CI checks titles and commits. See `AGENTS.md` for details.
 
 ## Contact form styling
 
-The native Rune Contact form uses `src/scss/components/_contact-form.scss` for BEM field, button, focus and validation styles. These styles are shared by the frontend and editor, adapt to the theme colours and retain accessible focus states. Submission handling belongs to Aeon; surrounding page content remains native blocks.
+Rune’s Contact form uses `src/scss/components/_contact-form.scss` for its BEM field, button, focus and validation styles. The frontend and editor share the styles, which use the theme colours and visible focus states. Aeon handles submissions; the rest of the page uses native blocks.
 
 ## Work and Projects pages
 
-Use standard Pages, with individual entries as child pages of Work or Projects. Their archive cards are native Query Loop blocks scoped to the parent page, ordered by Page Attributes → Order. Edit the blocks in the page editor; use Page List when only a navigation list is needed.
+Create Work and Projects as standard Pages, then add each entry as a child Page. Their archives use native Query Loop blocks scoped to the parent and sorted by Page Attributes → Order. Edit the loops in the page editor. Use Page List for simple navigation lists.
 
-Homepage cards use native Query Loop blocks querying Pages, filtered to the appropriate parent, ordered by Page Attributes → Order and limited to three entries. Featured Image, Post Title and Post Excerpt blocks inside the Post Template control the cards. All of these blocks, their settings and their layout are editable in the dashboard. No custom shortcode, renderer, page-collection template or custom post type is required.
+Homepage cards use native Query Loop blocks to show up to three child Pages, sorted by Page Attributes → Order. Featured Image, Post Title and Post Excerpt blocks in the Post Template make up each card. Edit the query, blocks and layout in the dashboard.
 
 ## Homepage editing
 
-Edit **Pages → Home** in the dashboard. Its introduction, headings, text, links and section groups are saved in WordPress and can be edited or reordered there. The theme renders that saved content through the native Post Content block; there is no hard-coded homepage content file or fallback copy.
+Edit the homepage in **Pages → Home**. Its introduction, headings, links and sections are saved in WordPress and can be edited or reordered in the editor. The template displays this content with the native Post Content block.
 
-Work and Projects cards remain live views of their child pages. Edit each child’s title, Featured Image and Excerpt to change its card, and Page Attributes → Order to change its position. Their native Query Loop blocks can be configured, moved or removed with the surrounding section groups.
+Homepage Work and Projects cards draw from their child Pages. Change a card by editing its Page title, Featured Image or Excerpt. Set its position with Page Attributes → Order. The Query Loop blocks can be edited or moved with their section groups. A responsive decorative brand mark sits behind the homepage introduction and is part of the theme design.
 
 ## SCSS formatting
 
-Use expanded blocks with tab indentation, one declaration per line and one selector per line in grouped selectors. Separate sibling rules with a blank line, with no empty line directly inside braces. This applies equally to single-declaration rules, media queries and nested BEM selectors. Keep the existing property order and styling choices.
+Format SCSS with expanded rules, tab indentation and one declaration per line. Put each selector in a grouped selector list on its own line. Separate sibling rules with one blank line; leave no blank lines just inside braces. Apply the same format to single-declaration rules, media queries and nested BEM selectors. Group properties in this order: box model, background, layout, type, then other. Alphabetise properties within each group and separate groups with a blank line. Do not add group-label comments. Keep dependent fallbacks and shorthand/longhand declarations together in the order they require.
 
-WordPress's SCSS stylistic preset, the local Stylelint overrides and `.editorconfig` enforce this format. Run `npm run lint:scss` to check it or `npm run lint:scss:fix` to apply corrections. CI runs the same check.
+WordPress’s SCSS stylistic preset, local Stylelint overrides and `.editorconfig` enforce the format. Run `npm run lint:scss` to check it or `npm run lint:scss:fix` to apply formatting changes. CI runs the lint check.
 
 ## Motion
 
-The homepage Work/Projects cards and the Work, Projects and Posts archives use a one-time 28px rise and fade lasting 450ms. `src/js/motion.js` observes offscreen cards as they enter view. Cards already visible at page load remain static. Content has no hidden waiting state, so it remains readable without JavaScript or IntersectionObserver support.
+Homepage Work and Projects cards and cards in the Work, Projects and Posts archives rise 28px and fade in over 450ms when they enter the viewport. `src/js/motion.js` observes cards that begin offscreen. Cards already visible on page load stay still. Without JavaScript or IntersectionObserver support, all content remains visible.
 
-Component motion styles use the shared `motion.enabled` mixin in `src/scss/utilities/_motion.scss`, which gates them behind `prefers-reduced-motion: no-preference`. Shared reveal keyframes and lifecycle classes remain in that utility. A changed preference cancels active reveals and disconnects observers. Keyboard focus immediately cancels a card reveal, and focus outlines remain instant. Link text transitions to a contrast-safe gold on hover over 160ms; toggle icon colours and submit-button borders also transition over 160ms; card images scale to 1.02 over 180ms on hover-capable fine pointers. Text/background swaps remain instant to maintain contrast.
+The shared `motion.enabled` mixin in `src/scss/utilities/_motion.scss` enables component animation only when `prefers-reduced-motion: no-preference`. Reveal keyframes and lifecycle classes are defined there. If the motion preference changes, active reveals stop and observers disconnect. Keyboard focus also stops a reveal; focus outlines appear immediately. On hover, link text changes to gold over 160ms, toggle icons and submit-button borders transition over 160ms, and card images scale to 1.02 over 180ms on fine pointers. Text and background colour-mode changes are immediate to preserve contrast.
 
-Run `npm run build` followed by `npm run test:motion` for the motion regression checks. They cover one-time reveals, reduced-motion changes, keyboard focus, unsupported observers, back/forward restoration and reduced-motion gating in the compiled CSS. JavaScript and SCSS lint checks pass; existing JavaScript spacing has been aligned with the WordPress formatter.
+Run `npm run build` and `npm run test:motion` for the motion regression checks. They cover one-time reveals, reduced-motion changes, keyboard focus, unsupported observers, browser history restoration and reduced-motion rules in the compiled CSS. Run the JavaScript and SCSS lint checks as well.
 
 ## Archive and detail layouts
 
-Work and Projects use image-led archive cards. Posts uses editorial rows with an image, title, date and excerpt. These layouts use core Query Loop, Post Template, Featured Image, Post Title, Post Date, Post Excerpt and Pagination blocks, with BEM classes for theme styling. Work and Projects listing content remains in its page editor. The Posts index query and shared detail layouts are now supplied by block templates.
+Work and Projects use image-led archive cards. The Posts archive lists titles, dates and excerpts without repeating the placeholder image. Category and tag archives use the same Query Loop layout and include the term description. Core Query Loop, Post Template, Post Title, Post Date, Post Excerpt, Term Description and Pagination blocks provide the layouts; BEM classes supply the theme styles. Edit Work and Projects listing content in their Pages. Block templates define the Posts query and shared detail layouts.
 
-The Posts index uses `templates/home.html`, with an inherited Query Loop so WordPress controls chronology and pagination. Its previous page content is retained but is no longer the source of the index layout. Posts use `templates/single.html`. Work and Projects child pages use the selectable Work entry and Project entry templates, with shared editorial title/image styling and a narrow content column. Featured images come from the Media Library and article bodies remain native editor blocks. Both colour modes and responsive layouts are supported.
+`templates/home.html` contains the Posts index and its inherited Query Loop, which uses WordPress chronology and pagination. The Page content remains saved, but the template controls the index layout. Posts use `templates/single.html`. Category and tag archives use `templates/category.html` and `templates/tag.html`, which share `parts/archive-content.html`. Work and Projects child Pages use their selectable entry templates, with shared title and image styling and a narrow content column. Featured images come from the Media Library; post and page content uses native editor blocks. Layouts support both colour modes and responsive screens.
 
 
 ## Site editing and navigation
 
-Use **Appearance → Editor → Templates** for page frames, archive layouts and the Posts index; edit Header and Footer through the editor's template parts. Page and post bodies remain in their normal editors. Frontend and editor canvases share the same SCSS presentation. The colour toggle is a core Button block with a real button element; its frontend behaviour and icon are supplied by the theme.
+Edit page frames, archive layouts and the Posts index in **Appearance → Editor → Templates**. Edit the Header and Footer in their template parts. Page and post content is edited in its usual editor. The frontend and editor use the same SCSS. The colour toggle is a core Button block; Obel supplies its icon and frontend behaviour.
 
-Use **Appearance → Editor → Navigation → Primary navigation** to add, remove or reorder menu links. Move the Navigation block within the Header template part to change its placement, and select another saved menu through its native controls. The old PHP navigation fallback and primary classic-menu location are removed. No custom navigation renderer or custom block is introduced.
+Manage links in **Appearance → Editor → Navigation → Primary navigation**. Add, remove or reorder links there. Move the Navigation block in the Header template part to change its position, or select another saved menu using the block controls. The header uses WordPress’s native Navigation block.
 
-The local migration created a native `wp_navigation` entity and stored its ID in `obel_primary_navigation`; the hidden `obel/site-navigation` pattern supplies that reference without hard-coding a database ID in the theme. Existing navigation entities and page bodies are preserved. For a fresh installation, choose or create a menu in the Header's Navigation block; it can be saved through the Site Editor without the migration option. Existing local Work/Projects child pages were assigned their respective custom templates; choose the relevant template for new child pages using the page editor's Template setting.
+The local migration created a `wp_navigation` entity and saved its ID in `obel_primary_navigation`. The hidden `obel/site-navigation` pattern reads that option so the theme does not contain a fixed database ID. Existing navigation entities and page content are preserved. On a fresh site, choose or create a menu in the Header’s Navigation block and save it in the Site Editor. Choose the Work entry or Project entry template for each new child Page in its Template setting.
 
-Editor saves of templates and template parts live in the database and override theme files. Export intentional shared design changes back into the theme when they should be version-controlled; migrate database customisations alongside content when launching. Core WordPress supplies document markup, head/footer hooks and the skip link. HTML templates include a single main landmark with the `main` anchor.
+The Site Editor saves templates and template parts in the database, where they take precedence over theme files. Export shared design changes to the theme when they should be version-controlled. Move database customisations with site content when launching. WordPress supplies document markup, head and footer hooks, and the skip link. HTML templates contain one main landmark with the `main` anchor.
 
 
 ## Asset and SCSS structure
 
-`src/scripts.js` imports the shared `src/styles.scss` entry and frontend behaviour. Webpack emits `build/scripts.js` and `build/styles.css`; WordPress loads the script using its generated dependency/version metadata and versions the stylesheet by its own modification time, so CSS-only rebuilds also invalidate the browser cache. `src/js/editor.js` imports the shared style entry and then `src/scss/editor.scss` for editor-specific canvas defaults. Supporting JavaScript lives in `src/js/`, including colour-toggle and motion behaviour; only `scripts.js` and `styles.scss` sit directly in `src/`.
+`src/scripts.js` imports `src/styles.scss` and the frontend behaviour. Webpack emits `build/scripts.js` and `build/styles.css`. WordPress reads the generated script dependency metadata and versions the stylesheet using its modification time, so CSS-only builds refresh the browser cache. `src/js/editor.js` imports the shared styles and `src/scss/editor.scss` for editor canvas defaults. Supporting JavaScript, including the colour toggle and motion code, lives in `src/js/`. Only `scripts.js` and `styles.scss` sit directly in `src/`.
 
-SCSS lives under `src/scss/`, organised into `foundations/` (fonts, colour tokens, element defaults), `layouts/` (shared page/grid/block layouts), `components/` (one partial per BEM block) and `utilities/` (shared reduced-motion-aware enhancements). Component partials own their elements, modifiers, hover/focus states and responsive rules. Use shallow `&__element`, `&--modifier` and `&:hover` nesting while preserving WordPress's native block classes. The Navigation component explicitly owns the gold link hover, native overlay layout and 323px compact-menu breakpoint; the Header component owns the logo/toggle rows and navigation placement.
+SCSS under `src/scss/` is grouped into `foundations/` for fonts, colour tokens and element defaults; `layouts/` for shared page, grid and block layouts; `components/` for BEM blocks; and `utilities/` for shared behaviour, including reduced-motion handling. Each component partial contains its elements, modifiers, interaction states and responsive rules. Use shallow `&__element`, `&--modifier` and `&:hover` nesting, and retain WordPress’s native block classes. The Navigation component handles the gold link hover, overlay layout and 323px compact-menu breakpoint. The Header component defines the logo and toggle rows and navigation placement.
 
-Linked core Image and Featured Image blocks draw the standard keyboard focus ring on the outer image block, avoiding clipping from image-zoom overflow. `src/scss/utilities/_focus.scss` shares the 3px theme-accent outline and 5px offset between standard controls and `src/scss/components/_linked-image.scss`. The ring appears only while the image link matches `:focus-visible`.
+Linked Image and Featured Image blocks show the keyboard focus ring on the outer block, so image zoom does not clip it. `src/scss/utilities/_focus.scss` and `src/scss/components/_linked-image.scss` use a 3px theme-accent outline with a 5px offset. The ring appears when the link matches `:focus-visible`.
 
-Rune's editor colour toggle can override the canvas preview using `--rune-canvas-*` variables. Obel's editor tokens consume those variables with existing light-colour fallbacks; public frontend colours and stored block styles are unaffected.
+Rune’s editor colour toggle sets the canvas preview through the `--rune-canvas-*` variables. Obel’s editor tokens use those values, with light-colour fallbacks when Rune is inactive. This does not alter frontend colours or saved block styles.
