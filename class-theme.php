@@ -168,7 +168,9 @@ final class Theme {
 		/*
 		 * translators: %s: Work item title.
 		 */
-		$tags->set_attribute( 'title', sprintf( __( 'Read more about %s', 'obel' ), $post_title ) );
+		$read_more_label = sprintf( __( 'Read more about %s', 'obel' ), $post_title );
+		$tags->set_attribute( 'aria-label', $read_more_label );
+		$tags->set_attribute( 'title', $read_more_label );
 
 		return $tags->get_updated_html();
 	}
