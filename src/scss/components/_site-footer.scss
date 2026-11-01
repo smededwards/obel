@@ -52,6 +52,13 @@
 			display: flex;
 			justify-content: center;
 		}
+
+		img {
+			height: 32px;
+			width: 26px;
+
+			object-fit: contain;
+		}
 	}
 
 	&__actions {

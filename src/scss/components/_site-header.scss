@@ -33,10 +33,11 @@
 		}
 
 		img {
-			height: auto !important;
-			width: auto !important;
-			max-width: 36px !important;
-			max-height: 75px !important;
+			height: 75px;
+			max-width: 36px;
+			width: 36px;
+
+			object-fit: contain;
 		}
 	}
 
