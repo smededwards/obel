@@ -22,16 +22,17 @@ add_action( 'after_setup_theme', 'obel_setup' );
 /**
  * Load a compiled entry with WordPress dependency metadata.
  *
- * @param string $entry Entry name.
+ * @param string $entry    Entry name.
+ * @param bool   $in_footer Whether to enqueue the script in the footer.
  * @return void
  */
-function obel_enqueue_entry( $entry ) {
+function obel_enqueue_entry( $entry, $in_footer = true ) {
 	$base = get_template_directory() . '/build/' . $entry;
 	if ( ! file_exists( $base . '.asset.php' ) ) {
 		return;
 	}
 	$asset = require $base . '.asset.php';
-	wp_enqueue_script( 'obel-' . $entry, get_template_directory_uri() . '/build/' . $entry . '.js', $asset['dependencies'], $asset['version'], true );
+	wp_enqueue_script( 'obel-' . $entry, get_template_directory_uri() . '/build/' . $entry . '.js', $asset['dependencies'], $asset['version'], $in_footer );
 	if ( 'scripts' === $entry && file_exists( get_template_directory() . '/build/styles.css' ) ) {
 		wp_enqueue_style( 'obel-styles', get_template_directory_uri() . '/build/styles.css', array(), (string) filemtime( get_template_directory() . '/build/styles.css' ) );
 	}

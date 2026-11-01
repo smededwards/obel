@@ -41,7 +41,7 @@ final class Theme {
 	 * @return void
 	 */
 	public function assets(): void {
-		wp_enqueue_script( 'obel-colour-mode', get_template_directory_uri() . '/assets/colour-mode.js', array(), (string) filemtime( get_template_directory() . '/assets/colour-mode.js' ), false );
+		obel_enqueue_entry( 'colour-mode-preference', false );
 	}
 
 	/**
