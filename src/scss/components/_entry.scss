@@ -128,18 +128,60 @@
 		max-width: 720px;
 		margin: 4rem auto 0;
 		padding-top: 2rem;
-		display: flex;
-		justify-content: space-between;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 2rem;
 
-		.nav-links {
-			display: flex;
-			justify-content: space-between;
-			gap: 2rem;
+		> .wp-block-post-navigation-link {
+			margin: 0;
+			min-width: 0;
 		}
 
-		.nav-next {
+		.post-navigation-link-previous:not(:has(a)),
+		.post-navigation-link-next:not(:has(a)) {
+			display: none;
+		}
+
+		.post-navigation-link-previous,
+		.post-navigation-link-next {
+			color: var(--obel-muted, #424245);
+			font-size: 0.75rem;
+			font-weight: 600;
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+
+			&::before {
+				margin-bottom: 0.5rem;
+
+				display: block;
+			}
+
+			a {
+				color: var(--obel-ink, #19191a);
+				font-size: 1rem;
+				letter-spacing: normal;
+				line-height: 1.5;
+				text-decoration: none;
+				text-transform: none;
+
+				&:hover {
+					color: var(--obel-gold, #c29c69);
+				}
+			}
+		}
+
+		.post-navigation-link-previous {
+			&::before {
+				content: "Previous post";
+			}
+		}
+
+		.post-navigation-link-next {
 			text-align: right;
+
+			&::before {
+				content: "Next post";
+			}
 		}
 	}
 
@@ -154,8 +196,13 @@
 	}
 
 	@media (max-width: breakpoints.$mobile) {
-		&__navigation .nav-links {
-			flex-direction: column;
+		&__navigation {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+
+			.post-navigation-link-next {
+				text-align: left;
+			}
 		}
 	}
 }
