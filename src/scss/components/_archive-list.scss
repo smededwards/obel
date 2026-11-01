@@ -1,5 +1,3 @@
-@use "../utilities/motion";
-
 .archive-list {
 	display: grid;
 	gap: 2.5rem;
@@ -13,13 +11,5 @@
 
 	> li:last-child > .archive-list__separator {
 		display: none;
-	}
-
-	@include motion.enabled {
-		@media (hover: hover) and (pointer: fine) {
-			> li:hover .archive-card__image img {
-				transform: scale(1.02);
-			}
-		}
 	}
 }

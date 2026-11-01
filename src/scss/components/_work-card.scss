@@ -1,15 +1,15 @@
-@use "../utilities/motion";
-
 .work-card {
 	margin: 0;
 
 	&__image {
 		aspect-ratio: 4 / 3;
+		border-bottom: 4px solid var(--obel-gold);
+
 		background: var(--obel-panel);
-		display: flex;
+
 		align-items: center;
+		display: flex;
 		justify-content: center;
-		border-bottom: 2px solid var(--obel-gold);
 
 		p {
 			font-family: "Noto Sans", sans-serif;
@@ -20,6 +20,7 @@
 		img {
 			width: 100%;
 			height: 100%;
+
 			object-fit: cover;
 		}
 	}
@@ -52,15 +53,5 @@
 		margin: 0;
 		font-size: 0.9rem;
 		color: var(--obel-ink);
-	}
-
-	&__image {
-		@include motion.enabled {
-			overflow: hidden;
-
-			img {
-				transition: transform 180ms ease-out;
-			}
-		}
 	}
 }

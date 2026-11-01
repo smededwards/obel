@@ -1,7 +1,34 @@
 @use "../utilities/focus";
+@use "../utilities/motion";
 
 .wp-block-image,
 .wp-block-post-featured-image {
+	&:has(> a img):not(.site-header__logo):not(.site-footer__logo) {
+		border-bottom: 4px solid var(--obel-gold);
+
+		overflow: hidden;
+
+		> a {
+			display: block;
+		}
+
+		img {
+			display: block;
+		}
+
+		@include motion.enabled {
+			img {
+				transition: transform 180ms ease-out;
+			}
+
+			@media (hover: hover) and (pointer: fine) {
+				&:hover > a img {
+					transform: scale(1.04);
+				}
+			}
+		}
+	}
+
 	&:has(> a:focus-visible) {
 		@include focus.ring;
 

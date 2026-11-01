@@ -1,4 +1,3 @@
-@use "../utilities/motion";
 @use "../foundations/breakpoints" as breakpoints;
 
 .collection-grid {
@@ -16,14 +15,6 @@
 		& {
 			grid-template-columns: 1fr;
 			gap: 2rem;
-		}
-	}
-
-	@include motion.enabled {
-		@media (hover: hover) and (pointer: fine) {
-			> li:hover .archive-card__image img {
-				transform: scale(1.02);
-			}
 		}
 	}
 }
