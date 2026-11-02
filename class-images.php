@@ -109,6 +109,11 @@ final class Images {
 		}
 
 		$tags->set_attribute( 'sizes', $sizes );
+		$light_src = $tags->get_attribute( 'src' );
+		if ( $light_src && str_ends_with( $light_src, '-light.svg' ) ) {
+			$tags->set_attribute( 'data-obel-adaptive-light', $light_src );
+			$tags->set_attribute( 'data-obel-adaptive-dark', str_replace( '-light.svg', '-dark.svg', $light_src ) );
+		}
 
 		return $tags->get_updated_html();
 	}

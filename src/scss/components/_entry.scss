@@ -11,13 +11,21 @@
 	&__back {
 		display: inline-block;
 		margin-bottom: 1.75rem;
-		color: var(--obel-muted, #424245);
-		font-size: 0.85rem;
-		text-decoration: none;
 
-		&:hover {
-			color: color-mix(in srgb, var(--obel-gold, #c29c69) 65%, var(--obel-ink, #19191a));
+		a {
+			color: var(--obel-ink, #19191a);
+			font-size: 0.75rem;
+			font-weight: 600;
+			letter-spacing: 0.06em;
+			text-decoration: none;
+			text-transform: uppercase;
+
+			&:hover,
+			&:focus-visible {
+				color: var(--obel-gold, #c29c69);
+			}
 		}
+
 	}
 
 	&__title {
@@ -189,6 +197,9 @@
 			}
 
 			a {
+				align-items: center;
+				display: inline-flex;
+				gap: 0.35rem;
 				color: var(--obel-ink, #19191a);
 				font-size: 1rem;
 				letter-spacing: normal;
@@ -200,6 +211,14 @@
 					color: var(--obel-gold, #c29c69);
 				}
 			}
+		}
+
+		.post-navigation-link-previous a::before {
+			content: "←";
+		}
+
+		.post-navigation-link-next a::after {
+			content: "→";
 		}
 
 		.post-navigation-link-previous {
@@ -242,6 +261,9 @@
 			}
 
 			.entry__navigation-link {
+				align-items: center;
+				display: inline-flex;
+				gap: 0.35rem;
 				color: var(--obel-ink, #19191a);
 				font-size: 1rem;
 				letter-spacing: normal;
@@ -252,6 +274,14 @@
 				&:hover {
 					color: var(--obel-gold, #c29c69);
 				}
+			}
+
+			.entry__navigation-item--previous .entry__navigation-link::before {
+				content: "←";
+			}
+
+			.entry__navigation-item--next .entry__navigation-link::after {
+				content: "→";
 			}
 		}
 	}

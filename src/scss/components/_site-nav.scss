@@ -15,23 +15,43 @@
 			min-height: 44px;
 			min-width: 44px;
 			padding: 0.5rem 0.25rem;
+			position: relative;
 
 			align-items: center;
 			display: inline-flex;
 
 			font-weight: 700;
+			letter-spacing: 0.04em;
 			text-decoration: none;
+			text-transform: uppercase;
+
+			&::after {
+				background: var(--obel-gold);
+				bottom: 0;
+				content: "";
+				height: 2px;
+				left: 50%;
+				position: absolute;
+				transform: translateX(-50%) scaleX(0);
+				transform-origin: center;
+				width: 1.5rem;
+			}
 		}
 
 		[aria-current="page"] {
-			text-decoration: underline;
-			text-decoration-color: var(--obel-gold);
+			color: var(--obel-gold);
+
+			&::after {
+				transform: translateX(-50%) scaleX(1);
+			}
 		}
 	}
 
 	&.wp-block-navigation {
 		font-size: 0.875rem;
 		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 
 		.wp-block-navigation__responsive-container-open {
 			min-height: 44px;
@@ -64,13 +84,51 @@
 		}
 
 		.wp-block-navigation-item__content {
-			&:hover {
-				color: color-mix(in srgb, var(--obel-gold) 65%, var(--obel-ink));
+			position: relative;
+
+			&::after {
+				background: var(--obel-gold);
+				bottom: 0;
+				content: "";
+				height: 2px;
+				left: 50%;
+				position: absolute;
+				transform: translateX(-50%) scaleX(0);
+				transform-origin: center;
+				width: 1.5rem;
+			}
+
+			&:hover,
+			&:focus-visible {
+				color: var(--obel-gold);
+
+				&::after {
+					transform: translateX(-50%) scaleX(1.5);
+				}
+			}
+
+			&[aria-current="page"] {
+				color: var(--obel-gold);
+
+				&::after {
+					transform: translateX(-50%) scaleX(1);
+				}
+
+				&:hover::after,
+				&:focus-visible::after {
+					transform: translateX(-50%) scaleX(1);
+				}
 			}
 		}
 
 		.wp-block-navigation__container {
 			gap: 1.5rem;
+		}
+
+		@include motion.enabled {
+			.wp-block-navigation-item__content::after {
+				transition: transform 160ms ease;
+			}
 		}
 
 		.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
@@ -109,6 +167,11 @@
 				font-size: clamp(1.75rem, 8vw, 2.25rem);
 				line-height: 1.25;
 				text-align: center;
+
+				.wp-block-navigation-item__content::after {
+					animation: none;
+					content: none;
+				}
 			}
 
 			.wp-block-navigation__responsive-container-close {

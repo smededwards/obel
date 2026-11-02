@@ -3,10 +3,32 @@
 	font-size: 0.875rem;
 
 	a {
+		color: var(--obel-ink);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.06em;
 		min-height: 44px;
 		padding: 0.25rem 0.5rem;
+		text-decoration: none;
+		text-transform: uppercase;
 
 		align-items: center;
 		display: inline-flex;
+		gap: 0.35rem;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--obel-gold);
+		}
+
+		span[aria-hidden="true"] {
+			font-size: 0;
+			line-height: 1;
+
+			&::after {
+				content: "→";
+				font-size: 0.875rem;
+			}
+		}
 	}
 }

@@ -4,8 +4,6 @@
 .wp-block-image,
 .wp-block-post-featured-image {
 	&:has(> a img):not(.site-header__logo):not(.site-footer__logo) {
-		border-bottom: 4px solid var(--obel-gold);
-
 		overflow: hidden;
 
 		> a {
@@ -14,6 +12,8 @@
 
 		img {
 			display: block;
+			border-bottom: 4px solid var(--obel-ink);
+			padding-bottom: 8px;
 		}
 
 		@include motion.enabled {
