@@ -116,7 +116,8 @@ test( 'compiled animations and transitions require no-preference; opacity zero i
 	const css = postcss.parse( fs.readFileSync( path.join( __dirname, '../build/styles.css' ), 'utf8' ) );
 	let effects = 0;
 	css.walkDecls( ( declaration ) => {
-		if ( /^(animation|transition)(-|$)/.test( declaration.prop ) || ( declaration.prop === 'opacity' && declaration.value === '0' ) ) {
+		const isMotion = /^(animation|transition)(-|$)/.test( declaration.prop ) && declaration.value !== 'none';
+		if ( isMotion || ( declaration.prop === 'opacity' && declaration.value === '0' ) ) {
 			let parent = declaration.parent;
 			let gated = false;
 			let keyframe = false;
