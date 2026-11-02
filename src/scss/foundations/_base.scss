@@ -72,6 +72,11 @@ pre {
 	font-family: "Noto Mono", monospace;
 }
 
+ul.wp-block-list,
+ol.wp-block-list {
+	padding-inline-start: 1em;
+}
+
 pre {
 	overflow-x: auto;
 	padding: 1.5rem;

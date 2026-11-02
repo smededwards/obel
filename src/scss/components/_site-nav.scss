@@ -1,4 +1,5 @@
 @use "../foundations/breakpoints" as breakpoints;
+@use "../utilities/motion";
 
 .site-nav {
 	&__list {
@@ -39,6 +40,27 @@
 			align-items: center;
 			display: flex;
 			justify-content: center;
+			color: var(--obel-ink);
+
+			&:hover {
+				color: var(--obel-accent);
+			}
+
+			@include motion.enabled {
+				transition: color 160ms ease;
+			}
+
+			svg {
+				display: none;
+			}
+
+			&::before {
+				background: linear-gradient(to bottom, transparent 0 10%, currentcolor 10% 18%, transparent 18% 46%, currentcolor 46% 54%, transparent 54% 82%, currentcolor 82% 90%, transparent 90% 100%);
+				content: "";
+				display: block;
+				height: 24px;
+				width: 24px;
+			}
 		}
 
 		.wp-block-navigation-item__content {
@@ -99,6 +121,15 @@
 				align-items: center;
 				display: flex;
 				justify-content: center;
+				color: var(--obel-ink);
+
+				&:hover {
+					color: var(--obel-accent);
+				}
+
+				@include motion.enabled {
+					transition: color 160ms ease;
+				}
 			}
 		}
 	}
