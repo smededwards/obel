@@ -1,0 +1,25 @@
+@use "../utilities/motion";
+
+@include motion.enabled {
+	.card-reveal {
+		&--enter {
+			animation: obel-card-enter 450ms ease-out both;
+
+			&:focus-within {
+				animation: none;
+			}
+		}
+	}
+
+	@keyframes obel-card-enter {
+		from {
+			opacity: 0;
+			transform: translateY(28px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}

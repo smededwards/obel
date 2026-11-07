@@ -1,6 +1,6 @@
 @use "../foundations/breakpoints" as breakpoints;
 
-body.home .work-grid {
+.wp-site-blocks:has(.home-intro) .work-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 
