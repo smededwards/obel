@@ -1,5 +1,5 @@
-.site-shell {
-	width: min(1120px, calc(100% - 3rem));
+.site-container {
+	width: min(1440px, calc(100% - 3rem));
 	margin-inline: auto;
 
 	@media (max-width: 360px) {
