@@ -20,8 +20,7 @@
 	pointer-events: none;
 }
 
-body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks,
-.editor-styles-wrapper .wp-site-blocks:has(.home-intro) {
+.wp-site-blocks:has(.home-intro) {
 	position: relative;
 	isolation: isolate;
 
@@ -35,8 +34,7 @@ body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-b
 	}
 }
 
-body.home .entry-content > .wp-block-group:has(.home-intro),
-.editor-styles-wrapper .wp-block-group:has(.home-intro) {
+.wp-block-group:has(.home-intro) {
 	background-color: transparent !important;
 	background-image: none !important;
 }
@@ -72,8 +70,7 @@ body.home .entry-content > .wp-block-group:has(.home-intro),
 }
 
 @media (max-width: breakpoints.$large) {
-	body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks::before,
-	.editor-styles-wrapper .wp-site-blocks:has(.home-intro)::before {
+	.wp-site-blocks:has(.home-intro)::before {
 		aspect-ratio: 245 / 256;
 		background-position: center top;
 		background-size: 100% 100%;
@@ -87,8 +84,7 @@ body.home .entry-content > .wp-block-group:has(.home-intro),
 }
 
 @include motion.enabled {
-	body.home:not(.editor-styles-wrapper):not(.block-editor-iframe__body) .wp-site-blocks::before,
-	.editor-styles-wrapper .wp-site-blocks:has(.home-intro)::before {
+	.wp-site-blocks:has(.home-intro)::before {
 		animation: obel-home-mark-fade-in 700ms ease-out both;
 	}
 
