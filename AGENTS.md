@@ -1,13 +1,15 @@
 # Repository conventions
 
-- Make and test changes locally. Wait for explicit code approval before committing, pushing or opening/updating a PR.
+- Make changes in this repository by default. During iteration, run only the checks relevant to the files changed; defer Ponytail and the final review until the user asks to open a PR. Wait for explicit code approval before committing, pushing or opening/updating a PR. Lint-only fixes to an already-open PR may be pushed directly.
 - Use lowercase, hyphenated WordPress-style PHP filenames. Organise PHP classes in responsibility-based directories directly under the project root, without a PHP `src/` wrapper. Use namespaces and separate classes for new custom PHP functionality, with Composer classmap autoloading where needed.
+- Keep custom PHP runtime behaviour in namespaced classes. Limit plugin/theme entry files to bootstrap, autoloading and fallback notices; use an adapter only where a WordPress or tooling contract requires a global callback.
 - Use sentence case for package names: Aeon, Obel and Rune. Keep lowercase code identifiers and package slugs unchanged.
+- Use Title Case for website content headings and SEO title overrides, including brand names such as WordPress.
 - Use Title Case for user-facing names, titles and headings, keeping short articles and conjunctions such as “a”, “and”, “in” and “the” lowercase. Use sentence case for user-facing descriptions and explanatory text.
 - Use Conventional Commits for every new commit and PR title: `type(scope): description`, with an optional scope and optional `!` for breaking changes.
 - Accepted types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`.
 - The sole exception is the repository's first commit, whose subject is exactly `Initial Commit`.
-- Keep PR descriptions focused on the core premise and features, using one short paragraph or a few brief bullets plus a short validation line. Omit implementation inventories and work logs unless necessary for review. Use British English in documentation.
+- Keep PR descriptions focused on the core premise and features, using one short paragraph or a few brief bullets. Omit implementation inventories, validation commands and work logs unless necessary for review. Use British English in documentation.
 - Never commit secrets, certificates, local environment files, uploads or generated dependency directories.
 
 ## Engineering principles
@@ -19,7 +21,6 @@ Apply these principles while planning, implementing and reviewing every change a
 - **SOLID:** Keep responsibilities focused, dependencies clear and interfaces small. Use extension points and abstractions where they improve maintainability, not as a goal in themselves.
 - **YAGNI:** Build for current requirements and agreed plans. Avoid speculative features, configuration and generalisation.
 
-- After a feature has been agreed and implemented, run the Ponytail `/ponytail-review` review on the completed changes before treating the feature as complete or opening a PR. Address actionable findings and report any deferred findings. Keep this review separate from automated lint and build checks.
 
 ## Branch and release workflow
 
@@ -27,15 +28,19 @@ Apply these principles while planning, implementing and reviewing every change a
 - Release connected batches through a `dev` to `main` PR using a merge commit with a Conventional Commit subject. Preserve feature history and fast-forward `dev` to released `main` before new work.
 - Version each repository independently. Tag only the approved release commit on `main`; published tags are immutable. Releases and deployments require explicit agreement.
 - Track the work merged into each repository's `dev` branch and proactively recommend a semantic version bump when a substantive release batch has accumulated. Base the recommendation on the changes' impact, not a fixed PR or feature count, and explain the proposed bump before preparing release metadata.
-- Keep reviewable changes in their corresponding local repository or GitHub PR. When an isolated worktree is useful, place it under the shared portfolio workspace's `.worktrees/<repo>-<purpose>` directory; do not leave review copies in generic temporary folders.
+- Keep reviewable changes in this repository or its GitHub PR. Use the repository directly by default; create a worktree only when explicitly requested or genuinely required for parallel isolation, and place it under the shared portfolio workspace's `.worktrees/<repo>-<purpose>` directory.
 - Keep `main` as the GitHub default branch. Avoid stacked PRs unless agreed; merge dependencies into `dev` first.
+- Clean up merged feature branches during a release or housekeeping pass. Before deletion, confirm no open PR depends on the branch and that it contains no unmerged work; never delete `dev` or `main`. Use `git fetch --prune` during that pass.
+- After a PR is merged, update the relevant README and repository documentation before starting the next release batch.
+- Treat local and production as separate environments. Require explicit confirmation immediately before production migrations, content or media imports, deletions, cache purges or database changes.
 - The local approval requirement above applies before publishing new changes.
 
 - Prefer returned markup built with `sprintf()` in PHP helpers. Use escaped `printf()` only at template or WordPress callback output boundaries, and `fwrite(STDOUT, ...)` in standalone CLI scripts; avoid direct `echo` statements. Escape dynamic values for their actual HTML, attribute or URL context. Formatting and returning values do not replace validation, capability checks or escaping.
 
 - Document each PHP and JavaScript function/method with an adequate DocBlock/JSDoc: a concise purpose, descriptions for each parameter, and a return description/type when applicable. Add documentation to callbacks when their purpose or contract is not self-evident. Use `//` for ordinary single-line comments; reserve PHPDoc/JSDoc blocks for function documentation, and use multiline block comments for longer notes or required WordPress translator comments.
 - Group JavaScript imports with comments: WordPress or external dependencies first, then internal dependencies, separated by a blank line. Keep PHP `use` declarations directly after the namespace and alphabetised within their logical groups.
-- Before review, run a custom-code consistency pass: check import and comment conventions, user-facing casing, unused imports and assets, and the repository's PHP, JavaScript, SCSS, build and test checks. Exclude WordPress core, vendor, generated, backup and third-party plugin files.
+- At final PR preparation, run Ponytail once, one custom-code consistency pass, and only the affected checks: PHPCS for PHP, ESLint and the build for JavaScript, Stylelint and the build for SCSS. Exclude WordPress core, vendor, generated, backup and third-party plugin files. After fixing findings, rerun only the affected checks.
+- For frontend or editor-facing features that change templates, blocks, navigation or responsive behaviour, run targeted Playwright checks at the relevant WordPress viewport sizes. Store screenshots and logs only under the Portfolio repository's `.docs/tests/playwright/` directory.
 
 - Use BEM for custom HTML and SCSS classes: `block`, `block__element`, `block--modifier` or `block__element--modifier`. Preserve WordPress-owned classes and keep block metadata, saved markup and selectors aligned when renaming classes.
 

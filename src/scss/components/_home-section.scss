@@ -24,6 +24,27 @@
 	}
 
 	&--posts {
+		.home-posts-layout {
+			align-items: start;
+			display: grid;
+			gap: clamp(2rem, 6vw, 6rem);
+			grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 1fr);
+		}
+
+		.home-posts-panel {
+			max-width: 32ch;
+			border-inline-start: 3px solid var(--obel-gold);
+			padding-inline-start: 2rem;
+
+			h3 {
+				margin-block: 0 1rem;
+			}
+
+			p {
+				margin-block: 0 1.5rem;
+			}
+		}
+
 		.wp-block-post-title {
 			margin-block: 0;
 		}
@@ -36,6 +57,16 @@
 	@media (max-width: breakpoints.$medium) {
 		&__header {
 			flex-wrap: wrap;
+		}
+
+		&--posts {
+			.home-posts-layout {
+				grid-template-columns: 1fr;
+			}
+
+			.home-posts-panel {
+				display: none;
+			}
 		}
 	}
 }
