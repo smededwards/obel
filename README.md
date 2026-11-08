@@ -2,6 +2,18 @@
 
 Obel is a WordPress block theme for the portfolio. It uses HTML templates, editable template parts and core blocks for page content.
 
+## Features
+
+- Full Site Editing templates and editable template parts built from core blocks.
+- Responsive Work, Projects and Posts archives using native Query Loop blocks.
+- Light and dark colour modes with a shared editor preview.
+- Responsive navigation, archive layouts and project detail templates.
+- Accessible focus states, reduced-motion support and card reveal transitions.
+- Responsive image sizes and adaptive featured-image presentation.
+- Shared BEM-oriented SCSS and JavaScript components across the front-end and editor.
+
+Detailed feature notes are available in the [Obel Wiki](https://github.com/smededwards/obel/wiki/Features), with development guidance in the [Development page](https://github.com/smededwards/obel/wiki/Development).
+
 ## Name
 
 Obel is shortened from *obelisk*. Its architectural associations of structure and permanence suit a theme that provides a restrained foundation for a site and remains useful on its own.
