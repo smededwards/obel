@@ -9,7 +9,7 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		font-size: 0.875rem;
+		font-size: 0.88rem;
 
 		a {
 			min-height: 44px;
@@ -48,7 +48,7 @@
 	}
 
 	&.wp-block-navigation {
-		font-size: 0.875rem;
+		font-size: 0.88rem;
 		font-weight: 700;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
@@ -233,7 +233,7 @@
 	}
 }
 
-body.home .wp-site-blocks:has(.site-nav .is-menu-open) > .wp-block-template-part:first-child {
+.wp-site-blocks:has(.site-nav .is-menu-open) > .wp-block-template-part:first-child {
 	position: relative;
 	z-index: 2;
 }

@@ -12,9 +12,6 @@ body {
 	margin: 0;
 	background: var(--obel-bg);
 	color: var(--obel-ink);
-	font-family: "Noto Sans", sans-serif;
-	font-size: 1.0625rem;
-	line-height: 1.8;
 }
 
 h1,
@@ -29,8 +26,7 @@ h6 {
 h1,
 h2,
 h3 {
-	line-height: 1.2;
-	letter-spacing: -0.035em;
+	letter-spacing: -0.04em;
 }
 
 h1 {

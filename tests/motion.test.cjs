@@ -5,7 +5,7 @@ const test = require( 'node:test' );
 const vm = require( 'node:vm' );
 const postcss = require( 'postcss' );
 
-const source = fs.readFileSync( path.join( __dirname, '../src/js/motion.js' ), 'utf8' );
+const source = fs.readFileSync( path.join( __dirname, '../src/js/components/card-reveal.js' ), 'utf8' );
 
 function harness( { motion = true, observerAvailable = true } = {} ) {
 	const listeners = {};
