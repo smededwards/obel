@@ -48,7 +48,7 @@ WordPress's SCSS stylistic preset, local Stylelint overrides and `.editorconfig`
 
 ## Motion
 
-Homepage Work and Projects cards and cards in the Work, Projects and Posts archives rise 28px and fade in over 450ms when they enter the viewport. `src/js/components/card-reveal.js` observes cards that begin offscreen. Cards already visible on page load stay still. Without JavaScript or IntersectionObserver support, all content remains visible.
+Homepage Work and Projects cards and cards in the Work, Projects and Posts archives rise 28px over 450ms when they enter the viewport. `src/js/components/card-reveal.js` observes cards that begin offscreen. Cards already visible on page load stay still. Without JavaScript or IntersectionObserver support, all content remains visible.
 
 The shared `motion.enabled` mixin in `src/scss/utilities/_motion.scss` enables component animation only when `prefers-reduced-motion: no-preference`. Card reveal keyframes and lifecycle classes live with the `card-reveal` component in `src/scss/components/_card-reveal.scss`. If the motion preference changes, active reveals stop and observers disconnect. Keyboard focus also stops a reveal; focus outlines appear immediately. On hover, link text changes to gold over 160ms, toggle icons and submit-button borders transition over 160ms, and card images scale to 1.02 over 180ms on fine pointers. Text and background colour-mode changes are immediate to preserve contrast.
 
