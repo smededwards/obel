@@ -6,14 +6,18 @@ All notable changes to Obel are documented here.
 
 ### Added
 
-- Improved the About page layout, navigation polish and work-entry navigation.
-- Added contextual read-more behaviour and a dedicated 404 experience.
+- Refine the About page, Work entries and project navigation.
+- Add a dedicated 404 experience and wider responsive layouts.
 
 ### Changed
 
-- Refined responsive images, colour-mode assets, theme components and visual styling.
-- Standardised readable markup and repository release guidance.
+- Refine responsive images, colour-mode assets, theme components, fonts and contact controls.
+- Align front-end and editor styles with the component structure.
 
-## [0.3.0]
+### Fixed
 
-- Existing release. Historical pull-request detail will be backfilled from GitHub metadata without rewriting published commits.
+- Improve logo dimensions, archive-link labels and contextual read-more links.
+
+### Documentation
+
+- Standardise readable markup and release guidance.
