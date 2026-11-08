@@ -4,6 +4,10 @@ All notable changes to Obel are documented here.
 
 ## [Unreleased]
 
+Future changes go here.
+
+## [0.4.0] - 2026-11-08
+
 ### Added
 
 - Refine the About page, Work entries and project navigation.
