@@ -26,7 +26,7 @@ Use Conventional Commit subjects and PR titles, such as `feat(theme): add naviga
 
 ## Contact Form Styling
 
-Rune's Contact Form uses `src/scss/components/_contact-form.scss` for its BEM field, button, focus and validation styles. The frontend and editor share the styles, which use the theme colours and visible focus states. Aeon handles submissions; the rest of the page uses native blocks.
+Rune's Contact Form uses `src/scss/components/_contact-form.scss` for its BEM field, button, focus and validation styles. The front-end and editor share the styles, which use the theme colours and visible focus states. Aeon handles submissions; the rest of the page uses native blocks.
 
 ## Work and Projects Pages
 
@@ -48,7 +48,7 @@ WordPress's SCSS stylistic preset, local Stylelint overrides and `.editorconfig`
 
 ## Motion
 
-Homepage Work and Projects cards and cards in the Work, Projects and Posts archives rise 28px and fade in over 450ms when they enter the viewport. `src/js/components/card-reveal.js` observes cards that begin offscreen. Cards already visible on page load stay still. Without JavaScript or IntersectionObserver support, all content remains visible.
+Homepage Work and Projects cards and cards in the Work, Projects and Posts archives rise 28px over 450ms when they enter the viewport. `src/js/components/card-reveal.js` observes cards that begin offscreen. Cards already visible on page load stay still. Without JavaScript or IntersectionObserver support, all content remains visible.
 
 The shared `motion.enabled` mixin in `src/scss/utilities/_motion.scss` enables component animation only when `prefers-reduced-motion: no-preference`. Card reveal keyframes and lifecycle classes live with the `card-reveal` component in `src/scss/components/_card-reveal.scss`. If the motion preference changes, active reveals stop and observers disconnect. Keyboard focus also stops a reveal; focus outlines appear immediately. On hover, link text changes to gold over 160ms, toggle icons and submit-button borders transition over 160ms, and card images scale to 1.02 over 180ms on fine pointers. Text and background colour-mode changes are immediate to preserve contrast.
 
@@ -62,7 +62,7 @@ Work and Projects use image-led archive cards. The Posts archive lists titles, d
 
 ## Site Editing and Navigation
 
-Edit page frames, archive layouts and the Posts index in **Appearance → Editor → Templates**. Edit the Header and Footer in their template parts. Page and post content is edited in its usual editor. The frontend and editor use the same SCSS. The colour toggle is a core Button block; Obel supplies its icon and frontend behaviour.
+Edit page frames, archive layouts and the Posts index in **Appearance → Editor → Templates**. Edit the Header and Footer in their template parts. Page and post content is edited in its usual editor. The front-end and editor use the same SCSS. The colour toggle is a core Button block; Obel supplies its icon and front-end behaviour.
 
 Manage links in **Appearance → Editor → Navigation → Primary navigation**. Add, remove or reorder links there. Move the Navigation block in the Header template part to change its position, or select another saved menu using the block controls. The header uses WordPress's native Navigation block.
 
@@ -78,4 +78,4 @@ SCSS under `src/scss/` is grouped into `foundations/` for fonts, colour tokens a
 
 Linked Image and Featured Image blocks show the keyboard focus ring on the outer block, so image zoom does not clip it. `src/scss/utilities/_focus.scss` and `src/scss/components/_linked-image.scss` use a 3px theme-accent outline with a 5px offset. The ring appears when the link matches `:focus-visible`.
 
-Rune's editor colour toggle sets the canvas preview through the `--rune-canvas-*` variables. Obel's editor tokens use those values, with light-colour fallbacks when Rune is inactive. This does not alter frontend colours or saved block styles.
+Rune's editor colour toggle sets the canvas preview through the `--rune-canvas-*` variables. Obel's editor tokens use those values, with light-colour fallbacks when Rune is inactive. This does not alter front-end colours or saved block styles.

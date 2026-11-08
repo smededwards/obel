@@ -86,12 +86,15 @@
   },
   "styles": {
     "typography": {
-      "fontFamily": "var:preset|font-family|sans"
+      "fontFamily": "var:preset|font-family|sans",
+      "fontSize": "1.06rem",
+      "lineHeight": "1.8"
     },
     "elements": {
       "heading": {
         "typography": {
-          "fontFamily": "var:preset|font-family|serif"
+          "fontFamily": "var:preset|font-family|serif",
+          "lineHeight": "1.2"
         }
       }
     },
