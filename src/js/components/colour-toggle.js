@@ -23,6 +23,14 @@ const update = () => {
 	if ( toggle ) {
 		toggle.setAttribute( 'aria-pressed', String( isDark() ) );
 	}
+	document
+		.querySelectorAll( 'img[data-obel-adaptive-dark]' )
+		.forEach( ( image ) => {
+			image.src =
+				image.dataset[
+					isDark() ? 'obelAdaptiveDark' : 'obelAdaptiveLight'
+				];
+		} );
 };
 
 /**
@@ -55,5 +63,6 @@ if ( toggle ) {
 		applyMode( mode );
 	} );
 	update();
-	system.addEventListener( 'change', update );
 }
+
+system.addEventListener( 'change', update );

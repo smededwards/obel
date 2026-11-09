@@ -3,7 +3,7 @@
 @use "scss/foundations/base";
 @use "scss/layouts/collections";
 @use "scss/layouts/collection-grid";
-@use "scss/layouts/site-shell";
+@use "scss/layouts/site-container";
 @use "scss/layouts/page-content";
 @use "scss/layouts/work-grid";
 @use "scss/layouts/home-grids";
@@ -18,6 +18,7 @@
 @use "scss/components/site-header";
 @use "scss/components/site-nav";
 @use "scss/components/colour-toggle";
+@use "scss/components/card-reveal";
 @use "scss/components/skip-link";
 @use "scss/components/home-intro";
 @use "scss/components/home-section";

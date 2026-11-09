@@ -8,4 +8,44 @@
 	--obel-gold: #c29c69;
 	background: var(--obel-bg);
 	color: var(--obel-ink);
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--obel-ink);
+	}
+
+	.about-page__summary,
+	.about-page > p.wp-block-paragraph,
+	.archive-page > p.wp-block-paragraph,
+	.entry__body > p.wp-block-paragraph,
+	.wp-block-post-content > p.wp-block-paragraph {
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	&.post-type-post {
+		.wp-block-post-content {
+			font-size: clamp(1.05rem, 1.5vw, 1.15rem);
+			line-height: 1.85;
+
+			h2 {
+				font-size: clamp(1.8rem, 3vw, 2.5rem);
+				margin-block: 3rem 1.25rem;
+			}
+
+			h3 {
+				font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+				margin-block: 2.5rem 1rem;
+			}
+
+			h4 {
+				font-size: 1.25rem;
+				margin-block: 2rem 0.75rem;
+			}
+		}
+	}
 }

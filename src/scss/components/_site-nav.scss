@@ -1,4 +1,5 @@
 @use "../foundations/breakpoints" as breakpoints;
+@use "../utilities/motion";
 
 .site-nav {
 	&__list {
@@ -8,50 +9,126 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		font-size: 0.875rem;
+		font-size: 0.88rem;
 
 		a {
 			min-height: 44px;
 			min-width: 44px;
 			padding: 0.5rem 0.25rem;
+			position: relative;
 
 			align-items: center;
 			display: inline-flex;
 
 			font-weight: 700;
+			letter-spacing: 0.04em;
 			text-decoration: none;
+			text-transform: uppercase;
+
+			&::after {
+				background: var(--obel-gold);
+				bottom: 0;
+				content: "";
+				height: 2px;
+				left: 50%;
+				position: absolute;
+				transform: translateX(-50%) scaleX(0);
+				transform-origin: center;
+				width: 1.5rem;
+			}
 		}
 
 		[aria-current="page"] {
-			text-decoration: underline;
-			text-decoration-color: var(--obel-gold);
-		}
-	}
+			color: var(--obel-gold);
 
-	@media (max-width: breakpoints.$medium) {
-		&__list {
-			gap: 1rem;
-			font-size: 0.8rem;
+			&::after {
+				transform: translateX(-50%) scaleX(1);
+			}
 		}
 	}
 
 	&.wp-block-navigation {
-		font-size: 0.875rem;
+		font-size: 0.88rem;
 		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 
 		.wp-block-navigation__responsive-container-open {
 			min-height: 44px;
 			min-width: 44px;
+
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			color: var(--obel-ink);
+
+			&:hover {
+				color: var(--obel-accent);
+			}
+
+			@include motion.enabled {
+				transition: color 160ms ease;
+			}
+
+			svg {
+				display: none;
+			}
+
+			&::before {
+				background: linear-gradient(to bottom, transparent 0 10%, currentcolor 10% 18%, transparent 18% 46%, currentcolor 46% 54%, transparent 54% 82%, currentcolor 82% 90%, transparent 90% 100%);
+				content: "";
+				display: block;
+				height: 24px;
+				width: 24px;
+			}
 		}
 
 		.wp-block-navigation-item__content {
-			&:hover {
-				color: color-mix(in srgb, var(--obel-gold) 65%, var(--obel-ink));
+			position: relative;
+
+			&::after {
+				background: var(--obel-gold);
+				bottom: 0;
+				content: "";
+				height: 2px;
+				left: 50%;
+				position: absolute;
+				transform: translateX(-50%) scaleX(0);
+				transform-origin: center;
+				width: 1.5rem;
+			}
+
+			&:hover,
+			&:focus-visible {
+				color: var(--obel-gold);
+
+				&::after {
+					transform: translateX(-50%) scaleX(1.5);
+				}
+			}
+
+			&[aria-current="page"] {
+				color: var(--obel-gold);
+
+				&::after {
+					transform: translateX(-50%) scaleX(1);
+				}
+
+				&:hover::after,
+				&:focus-visible::after {
+					transform: translateX(-50%) scaleX(1);
+				}
 			}
 		}
 
 		.wp-block-navigation__container {
 			gap: 1.5rem;
+		}
+
+		@include motion.enabled {
+			.wp-block-navigation-item__content::after {
+				transition: transform 160ms ease;
+			}
 		}
 
 		.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
@@ -90,6 +167,11 @@
 				font-size: clamp(1.75rem, 8vw, 2.25rem);
 				line-height: 1.25;
 				text-align: center;
+
+				.wp-block-navigation-item__content::after {
+					animation: none;
+					content: none;
+				}
 			}
 
 			.wp-block-navigation__responsive-container-close {
@@ -102,11 +184,36 @@
 				align-items: center;
 				display: flex;
 				justify-content: center;
+				color: var(--obel-ink);
+
+				&:hover {
+					color: var(--obel-accent);
+				}
+
+				@include motion.enabled {
+					transition: color 160ms ease;
+				}
 			}
 		}
 	}
 
-	@media (min-width: 323px) {
+	@media (max-width: breakpoints.$medium) {
+		&__list {
+			gap: 1rem;
+
+			font-size: 1rem;
+		}
+
+		&.wp-block-navigation {
+			font-size: 1rem;
+
+			.wp-block-navigation__container {
+				gap: 1rem;
+			}
+		}
+	}
+
+	@media (min-width: 481px) {
 		&.wp-block-navigation {
 			.wp-block-navigation__responsive-container-open:not(.always-shown) {
 				display: none;
@@ -126,7 +233,7 @@
 	}
 }
 
-body.home .wp-site-blocks:has(.site-nav .is-menu-open) > .wp-block-template-part:first-child {
+.wp-site-blocks:has(.site-nav .is-menu-open) > .wp-block-template-part:first-child {
 	position: relative;
 	z-index: 2;
 }

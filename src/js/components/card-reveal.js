@@ -3,7 +3,7 @@
  *
  * @return {void}
  */
-const initialiseCardMotion = () => {
+const initialiseCardReveal = () => {
 	if (
 		typeof window.IntersectionObserver !== 'function' ||
 		typeof window.matchMedia !== 'function'
@@ -108,4 +108,4 @@ const initialiseCardMotion = () => {
 	prepare();
 };
 
-initialiseCardMotion();
+initialiseCardReveal();

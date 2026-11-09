@@ -19,6 +19,8 @@ final class Theme {
 	public function register(): void {
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'editor_assets' ) );
+		add_filter( 'wp_preload_resources', array( $this, 'preload_fonts' ) );
 		add_filter( 'aeon_seo_person_schema', array( $this, 'person_schema' ) );
 		add_filter( 'wp_robots', array( $this, 'noindex_taxonomy_archives' ), 100 );
 		add_filter( 'wp_sitemaps_taxonomies', array( $this, 'exclude_taxonomies_from_sitemap' ) );
@@ -32,6 +34,11 @@ final class Theme {
 	 * @return void
 	 */
 	public function setup(): void {
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'wp-block-styles' );
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'build/editor.css' );
 		add_post_type_support( 'page', 'excerpt' );
 	}
 
@@ -41,7 +48,64 @@ final class Theme {
 	 * @return void
 	 */
 	public function assets(): void {
-		wp_enqueue_script( 'obel-colour-mode', get_template_directory_uri() . '/assets/colour-mode.js', array(), (string) filemtime( get_template_directory() . '/assets/colour-mode.js' ), false );
+		$this->enqueue_entry( 'colour-mode-preference', false );
+		$this->enqueue_entry( 'scripts' );
+	}
+
+	/**
+	 * Load editor assets.
+	 *
+	 * @return void
+	 */
+	public function editor_assets(): void {
+		$this->enqueue_entry( 'editor' );
+	}
+
+	/**
+	 * Preload the fonts used above the fold.
+	 *
+	 * @param array<int,array<string,string>> $resources Existing preload resources.
+	 * @return array<int,array<string,string>> Updated preload resources.
+	 */
+	public function preload_fonts( array $resources ): array {
+		$font_directory = get_template_directory() . '/build/fonts/';
+		$font_uri       = get_template_directory_uri() . '/build/fonts/';
+
+		foreach ( array( 'noto-sans', 'noto-serif' ) as $font_name ) {
+			$font_files = glob( $font_directory . $font_name . '.*.woff2' );
+
+			if ( empty( $font_files ) ) {
+				continue;
+			}
+
+			$resources[] = array(
+				'href'        => $font_uri . basename( $font_files[0] ),
+				'as'          => 'font',
+				'type'        => 'font/woff2',
+				'crossorigin' => 'anonymous',
+			);
+		}
+
+		return $resources;
+	}
+
+	/**
+	 * Load a compiled entry with WordPress dependency metadata.
+	 *
+	 * @param string $entry    Entry name.
+	 * @param bool   $in_footer Whether to enqueue the script in the footer.
+	 * @return void
+	 */
+	private function enqueue_entry( string $entry, bool $in_footer = true ): void {
+		$base = get_template_directory() . '/build/' . $entry;
+		if ( ! file_exists( $base . '.asset.php' ) ) {
+			return;
+		}
+		$asset = require $base . '.asset.php';
+		wp_enqueue_script( 'obel-' . $entry, get_template_directory_uri() . '/build/' . $entry . '.js', $asset['dependencies'], $asset['version'], $in_footer );
+		if ( 'scripts' === $entry && file_exists( get_template_directory() . '/build/styles.css' ) ) {
+			wp_enqueue_style( 'obel-styles', get_template_directory_uri() . '/build/styles.css', array(), (string) filemtime( get_template_directory() . '/build/styles.css' ) );
+		}
 	}
 
 	/**
@@ -168,7 +232,9 @@ final class Theme {
 		/*
 		 * translators: %s: Work item title.
 		 */
-		$tags->set_attribute( 'title', sprintf( __( 'Read more about %s', 'obel' ), $post_title ) );
+		$read_more_label = sprintf( __( 'Read more about %s', 'obel' ), $post_title );
+		$tags->set_attribute( 'aria-label', $read_more_label );
+		$tags->set_attribute( 'title', $read_more_label );
 
 		return $tags->get_updated_html();
 	}

@@ -13,6 +13,10 @@ module.exports = {
 			: plugin
 	),
 	entry: {
+		'colour-mode-preference': path.resolve(
+			__dirname,
+			'src/js/colour-mode-preference.js'
+		),
 		scripts: path.resolve( __dirname, 'src/scripts.js' ),
 		editor: path.resolve( __dirname, 'src/js/editor.js' ),
 	},

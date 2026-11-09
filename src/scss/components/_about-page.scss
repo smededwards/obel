@@ -23,15 +23,126 @@
 	&__summary {
 		margin: 0;
 		max-width: 62ch;
+
+		padding-block-start: 0.5rem;
+	}
+
+	&__credential {
+		margin-block: 4rem;
+		margin-inline: auto;
+		max-width: 60ch;
+
+		> p {
+			margin-block: 0;
+		}
+	}
+
+	&__credential-mark {
+		margin-block-end: 1.25rem;
+		max-width: 220px;
+	}
+
+	&__vip-logo {
+		width: 100%;
+		height: auto;
+	}
+
+	&__vip-logo--dark {
+		display: none;
 	}
 
 	&__lead {
+		margin-block-end: 1.5rem;
+
+		padding: clamp(1rem, 2vw, 1.5rem);
+		background: color-mix(in srgb, var(--obel-gold) 12%, var(--obel-bg));
+
 		font-size: clamp(1.35rem, 2.2vw, 1.8rem);
 		line-height: 1.5;
 	}
 
-	> .wp-block-heading {
-		margin-block-start: 3rem;
+	&__facts {
+		width: 100%;
+		max-width: 43rem;
+		margin-block: 3rem 1rem;
+		margin-inline: auto;
+		padding-block: 1.25rem;
+		border-block: 1px solid color-mix(in srgb, var(--obel-gold) 70%, transparent);
+		gap: 1.25rem;
+	}
+
+	&__fact {
+		flex: 1 1 9rem;
+		text-align: center;
+	}
+
+	&__fact-value {
+		margin: 0;
+
+		font-family: var(--wp--preset--font-family--noto-serif, serif);
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		line-height: 1;
+	}
+
+	&__fact-label {
+		margin: 0.5rem 0 0;
+
+		font-size: 0.85rem;
+		line-height: 1.35;
+	}
+
+	&__skills {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.75rem 2rem;
+	}
+
+	> h2.wp-block-heading {
+		width: 100%;
+		max-width: 43rem;
+		margin-inline: auto;
+		margin-block: 4rem 1rem;
+
+		position: relative;
+
+		padding-block-start: 1.5rem;
+
+		&::before {
+			position: absolute;
+			inset-block-start: 0;
+			inset-inline-start: 0;
+			width: 4rem;
+			height: 3px;
+			background: var(--obel-gold);
+			content: "";
+		}
+	}
+
+	> h3.wp-block-heading,
+	> p,
+	> ul,
+	> .about-page__credential {
+		width: 100%;
+		max-width: 43rem;
+		margin-inline: auto;
+	}
+
+	> ul {
+		list-style-position: outside;
+	}
+
+	> h3.wp-block-heading {
+		margin-block: 2rem 0.75rem;
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid var(--obel-gold);
+
+		font-size: clamp(1.2rem, 2vw, 1.5rem);
+	}
+
+	> h3.wp-block-heading + p,
+	> h3.wp-block-heading + ul {
+		padding-inline-start: 1rem;
+		border-inline-start: 3px solid color-mix(in srgb, var(--obel-gold) 35%, transparent);
 	}
 
 	@media (max-width: breakpoints.$medium) {
@@ -44,6 +155,44 @@
 		&__portrait {
 			margin-inline: auto;
 			max-width: 280px;
+		}
+
+		> h2.wp-block-heading {
+			margin-block-start: 3rem;
+		}
+
+		&__facts {
+			gap: 1rem;
+		}
+
+		&__fact {
+			flex-basis: 8rem;
+		}
+
+		&__skills {
+			display: block;
+		}
+	}
+}
+
+:root[data-colour-mode="dark"] {
+	.about-page__vip-logo--light {
+		display: none;
+	}
+
+	.about-page__vip-logo--dark {
+		display: block;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-colour-mode="light"]) {
+		.about-page__vip-logo--light {
+			display: none;
+		}
+
+		.about-page__vip-logo--dark {
+			display: block;
 		}
 	}
 }

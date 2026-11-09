@@ -1,3 +1,4 @@
+// Internal dependencies.
 import './styles.scss';
-import './js/motion';
-import './js/colour-toggle';
+import './js/components/card-reveal';
+import './js/components/colour-toggle';
