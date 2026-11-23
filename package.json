@@ -1,6 +1,6 @@
 {
   "name": "obel",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "engines": {
     "node": ">=24 <25"
@@ -14,7 +14,10 @@
     "test:motion": "node --test tests/motion.test.cjs"
   },
   "devDependencies": {
-    "@wordpress/scripts": "37.0.0",
+    "@wordpress/scripts": "37.2.0",
     "mini-css-extract-plugin": "2.10.2"
+  },
+  "overrides": {
+    "serialize-javascript": "7.0.5"
   }
 }

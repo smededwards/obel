@@ -2,7 +2,7 @@
 
 Obel is a WordPress block theme for the portfolio. It uses HTML templates, editable template parts and core blocks for page content.
 
-Current release: **0.4.0**.
+Current release: **0.4.1**.
 
 ## Features
 
