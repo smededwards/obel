@@ -62,12 +62,12 @@ final class Images {
 	 * @return array Block data with the card image size set to Medium.
 	 */
 	public function featured_image_size( array $block ): array {
-		if ( 'core/post-featured-image' !== ( $block['blockName'] ?? '' ) ) {
+		if ( ( $block['blockName'] ?? '' ) !== 'core/post-featured-image' ) {
 			return $block;
 		}
 
 		$class_names = preg_split( '/\s+/', trim( $block['attrs']['className'] ?? '' ) );
-		$class_names = false === $class_names ? array() : $class_names;
+		$class_names = $class_names === false ? array() : $class_names;
 
 		if ( ! in_array( 'archive-card__image', $class_names, true ) && ! in_array( 'work-card__image', $class_names, true ) ) {
 			return $block;
@@ -87,7 +87,7 @@ final class Images {
 	 */
 	public function responsive_featured_image_sizes( string $content, array $block ): string {
 		$class_names = preg_split( '/\s+/', trim( $block['attrs']['className'] ?? '' ) );
-		$class_names = false === $class_names ? array() : $class_names;
+		$class_names = $class_names === false ? array() : $class_names;
 
 		if ( in_array( 'archive-card__image--row', $class_names, true ) ) {
 			$sizes = '(max-width: 600px) calc(100vw - 3rem), 240px';

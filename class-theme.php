@@ -103,7 +103,7 @@ final class Theme {
 		}
 		$asset = require $base . '.asset.php';
 		wp_enqueue_script( 'obel-' . $entry, get_template_directory_uri() . '/build/' . $entry . '.js', $asset['dependencies'], $asset['version'], $in_footer );
-		if ( 'scripts' === $entry && file_exists( get_template_directory() . '/build/styles.css' ) ) {
+		if ( $entry === 'scripts' && file_exists( get_template_directory() . '/build/styles.css' ) ) {
 			wp_enqueue_style( 'obel-styles', get_template_directory_uri() . '/build/styles.css', array(), (string) filemtime( get_template_directory() . '/build/styles.css' ) );
 		}
 	}
@@ -123,13 +123,13 @@ final class Theme {
 		$about_page         = get_page_by_path( 'about', OBJECT, 'page' );
 		if ( $about_page instanceof \WP_Post && is_post_publicly_viewable( $about_page ) ) {
 			$description = trim( wp_strip_all_tags( get_the_excerpt( $about_page ) ) );
-			if ( '' !== $description ) {
+			if ( $description !== '' ) {
 				$person['description'] = $description;
 			}
 		}
 
 		static $profile_image_url = null;
-		if ( null === $profile_image_url ) {
+		if ( $profile_image_url === null ) {
 			$profile_image     = get_page_by_path( 'profile', OBJECT, 'attachment' );
 			$profile_image_url = $profile_image instanceof \WP_Post
 				? wp_get_attachment_image_url( $profile_image->ID, 'full' )
@@ -213,7 +213,7 @@ final class Theme {
 		}
 
 		$post_title = wp_strip_all_tags( get_the_title( $post_id ) );
-		if ( '' === $post_title ) {
+		if ( $post_title === '' ) {
 			return $content;
 		}
 
