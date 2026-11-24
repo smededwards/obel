@@ -88,9 +88,17 @@ final class Images {
 	public function responsive_featured_image_sizes( string $content, array $block ): string {
 		$class_names = preg_split( '/\s+/', trim( $block['attrs']['className'] ?? '' ) );
 		$class_names = $class_names === false ? array() : $class_names;
+		$dimensions  = array(
+			'width'  => '640',
+			'height' => '480',
+		);
 
 		if ( in_array( 'archive-card__image--row', $class_names, true ) ) {
-			$sizes = '(max-width: 600px) calc(100vw - 3rem), 240px';
+			$sizes      = '(max-width: 600px) calc(100vw - 3rem), 240px';
+			$dimensions = array(
+				'width'  => '240',
+				'height' => '180',
+			);
 		} elseif ( in_array( 'work-card__image', $class_names, true ) ) {
 			$sizes = is_front_page()
 				? '(max-width: 600px) calc(100vw - 3rem), (max-width: 960px) 46vw, (max-width: 1200px) 30vw, 357px'
@@ -98,7 +106,11 @@ final class Images {
 		} elseif ( in_array( 'archive-card__image', $class_names, true ) ) {
 			$sizes = '(max-width: 600px) calc(100vw - 3rem), (max-width: 1200px) 46vw, 544px';
 		} elseif ( in_array( 'entry__figure', $class_names, true ) ) {
-			$sizes = '(max-width: 960px) calc(100vw - 3rem), 960px';
+			$sizes      = '(max-width: 960px) calc(100vw - 3rem), 960px';
+			$dimensions = array(
+				'width'  => '960',
+				'height' => '540',
+			);
 		} else {
 			return $content;
 		}
@@ -109,6 +121,8 @@ final class Images {
 		}
 
 		$tags->set_attribute( 'sizes', $sizes );
+		$tags->set_attribute( 'width', $dimensions['width'] );
+		$tags->set_attribute( 'height', $dimensions['height'] );
 		$light_src = $tags->get_attribute( 'src' );
 		if ( $light_src && str_ends_with( $light_src, '-light.svg' ) ) {
 			$tags->set_attribute( 'data-obel-adaptive-light', $light_src );
