@@ -28,7 +28,7 @@ Future changes go here.
 ### Changed
 
 - Refine responsive images, colour-mode assets, theme components, fonts and contact controls.
-- Align front-end and editor styles with the component structure.
+- Align Front-End and editor styles with the component structure.
 
 ### Fixed
 
