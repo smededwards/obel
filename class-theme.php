@@ -65,7 +65,7 @@ final class Theme {
 	/**
 	 * Render post navigation links with the project navigation markup.
 	 *
-	 * @param string               $content Rendered block content.
+	 * @param string              $content Rendered block content.
 	 * @param array<string,mixed> $block   Block data.
 	 * @return string Navigation link markup.
 	 */
@@ -131,14 +131,15 @@ final class Theme {
 		if ( ! file_exists( $base . '.asset.php' ) ) {
 			return;
 		}
-		$asset = require $base . '.asset.php';
+		$asset       = require $base . '.asset.php';
 		$script_path = $base . '.js';
 		$script_ver  = file_exists( $script_path ) ? (string) filemtime( $script_path ) : $asset['version'];
 
-		wp_enqueue_script( 'obel-' . $entry, $this->asset_url( $entry . '.js' ), $asset['dependencies'], $script_ver, $in_footer );
+		wp_enqueue_script( 'obel-' . $entry, get_theme_file_uri( 'build/' . $entry . '.js' ), $asset['dependencies'], $script_ver, $in_footer );
 
 		if ( $entry === 'scripts' && file_exists( get_template_directory() . '/build/styles.css' ) ) {
-			wp_enqueue_style( 'obel-styles', $this->asset_url( 'styles.css' ), array(), null );
+			$style_path = get_template_directory() . '/build/styles.css';
+			wp_enqueue_style( 'obel-styles', get_theme_file_uri( 'build/styles.css' ), array(), (string) filemtime( $style_path ) );
 		}
 	}
 
