@@ -1,0 +1,44 @@
+@use "../foundations/breakpoints" as breakpoints;
+
+.editorial-summary,
+.editorial-callout,
+.editorial-closing {
+	max-width: 65ch;
+	margin-block: 3rem;
+}
+
+.editorial-summary,
+.editorial-callout {
+	border-inline-start: 3px solid var(--obel-gold);
+	padding: 1.5rem 2rem;
+	background: var(--obel-panel);
+
+	h2,
+	h3 {
+		margin-block: 0 1rem;
+	}
+
+	p {
+		margin-block: 0;
+	}
+}
+
+.editorial-closing {
+	border-top: 3px solid var(--obel-gold);
+	padding-top: 2rem;
+
+	h2 {
+		margin-block: 0 1rem;
+	}
+
+	p {
+		margin-block: 0;
+	}
+}
+
+@media (max-width: breakpoints.$small) {
+	.editorial-summary,
+	.editorial-callout {
+		padding: 1.25rem;
+	}
+}
