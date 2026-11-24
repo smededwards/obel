@@ -15,7 +15,7 @@
 	<a href="<?php printf( '%s', esc_url( home_url( '/' ) ) ); ?>">
 		<img
 			src="<?php printf( '%s', esc_url( get_template_directory_uri() . '/assets/images/logo.svg' ) ); ?>"
-			alt="<?php printf( '%s', esc_attr( get_bloginfo( 'name' ) ) ); ?>"
+			alt=""
 		>
 	</a>
 </figure>

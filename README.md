@@ -11,6 +11,9 @@ Current release: **0.4.1**.
 - Light and dark colour modes with a shared editor preview.
 - Responsive navigation, archive layouts and project detail templates.
 - Accessible focus states, reduced-motion support and card reveal transitions.
+- Accessible colour-mode controls and non-duplicated logo announcements.
+- Semantic archive headings, sections and linked-card media.
+- Semantic page articles and labelled navigation landmarks.
 - Responsive image sizes and adaptive featured-image presentation.
 - Shared BEM-oriented SCSS and JavaScript components across the front-end and editor.
 
