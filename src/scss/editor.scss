@@ -1,4 +1,6 @@
 @use "components/editorial-patterns";
+@use "components/archive-pagination";
+@use "components/entry";
 
 .editor-styles-wrapper {
 	--obel-bg: var(--rune-canvas-background, #fff);
