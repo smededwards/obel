@@ -1,3 +1,5 @@
+@use "components/editorial-patterns";
+
 .editor-styles-wrapper {
 	--obel-bg: var(--rune-canvas-background, #fff);
 	--obel-ink: var(--rune-canvas-text, #19191a);
