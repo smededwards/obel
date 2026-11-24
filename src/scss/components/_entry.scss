@@ -77,7 +77,7 @@
 
 		> :not(.wp-block-columns):not(.wp-block-media-text):not(.wp-block-image):not(.wp-block-gallery):not(.wp-block-query) {
 			margin-inline: auto;
-			max-width: 720px;
+			max-width: 65ch;
 		}
 
 		> * + * {
@@ -160,7 +160,7 @@
 	&__navigation {
 		@include divider.top-dash;
 
-		max-width: 720px;
+		max-width: 65ch;
 		margin: 4rem auto 0;
 		padding-top: 2rem;
 		display: grid;
