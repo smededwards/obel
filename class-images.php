@@ -94,7 +94,7 @@ final class Images {
 		);
 
 		if ( in_array( 'archive-card__image--row', $class_names, true ) ) {
-			$sizes = '(max-width: 600px) calc(100vw - 3rem), 240px';
+			$sizes      = '(max-width: 600px) calc(100vw - 3rem), 240px';
 			$dimensions = array(
 				'width'  => '240',
 				'height' => '180',
@@ -106,7 +106,7 @@ final class Images {
 		} elseif ( in_array( 'archive-card__image', $class_names, true ) ) {
 			$sizes = '(max-width: 600px) calc(100vw - 3rem), (max-width: 1200px) 46vw, 544px';
 		} elseif ( in_array( 'entry__figure', $class_names, true ) ) {
-			$sizes = '(max-width: 960px) calc(100vw - 3rem), 960px';
+			$sizes      = '(max-width: 960px) calc(100vw - 3rem), 960px';
 			$dimensions = array(
 				'width'  => '960',
 				'height' => '540',
