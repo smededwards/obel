@@ -1,13 +1,21 @@
+<!--
+ * Template: Work Page
+ * Purpose: Displays the Work page title and editable page content.
+-->
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","anchor":"main","className":"site-container page-content archive-page","layout":{"type":"default"}} -->
 <main id="main" class="wp-block-group site-container page-content archive-page">
-	<!-- wp:group {"tagName":"header","className":"archive-page__header","layout":{"type":"default"}} -->
-	<header class="wp-block-group archive-page__header">
-		<!-- wp:post-title {"level":1} /-->
-	</header>
+	<!-- wp:group {"tagName":"article","className":"page-entry","layout":{"type":"default"}} -->
+	<article class="wp-block-group page-entry">
+		<!-- wp:group {"tagName":"header","className":"archive-page__header","layout":{"type":"default"}} -->
+		<header class="wp-block-group archive-page__header">
+			<!-- wp:post-title {"level":1} /-->
+		</header>
+		<!-- /wp:group -->
+		<!-- wp:post-content {"layout":{"type":"default"}} /-->
+	</article>
 	<!-- /wp:group -->
-	<!-- wp:post-content {"layout":{"type":"default"}} /-->
 </main>
 <!-- /wp:group -->
 

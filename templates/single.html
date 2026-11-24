@@ -1,3 +1,7 @@
+<!--
+ * Template: Single Post
+ * Purpose: Displays a post title, date, featured image, content and navigation.
+-->
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
 <!-- wp:group {"tagName":"main","anchor":"main","className":"site-container page-content ","layout":{"type":"default"}} -->
@@ -13,11 +17,11 @@
 		<!-- /wp:group -->
 		<!-- wp:post-featured-image {"sizeSlug":"large","aspectRatio":"16/9","className":"entry__figure"} /-->
 		<!-- wp:post-content {"className":"entry__body","layout":{"type":"default"}} /-->
-		<!-- wp:group {"tagName":"div","className":"entry__navigation","layout":{"type":"default"}} -->
-		<div class="wp-block-group entry__navigation">
+		<!-- wp:group {"tagName":"nav","className":"entry__navigation","layout":{"type":"default"}} -->
+		<nav class="wp-block-group entry__navigation" aria-label="Post Navigation">
 			<!-- wp:post-navigation-link {"type":"previous","showTitle":true} /-->
 			<!-- wp:post-navigation-link {"type":"next","showTitle":true} /-->
-		</div>
+		</nav>
 		<!-- /wp:group -->
 	</article>
 	<!-- /wp:group -->

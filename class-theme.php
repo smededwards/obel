@@ -189,6 +189,7 @@ final class Theme {
 		if ( $tags->next_tag( 'button' ) ) {
 			$tags->set_attribute( 'hidden', true );
 			$tags->set_attribute( 'aria-pressed', 'false' );
+			$tags->set_attribute( 'aria-label', __( 'Toggle Colour Mode', 'obel' ) );
 		}
 		return $tags->get_updated_html();
 	}
