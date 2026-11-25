@@ -26,6 +26,7 @@ final class Theme {
 		add_filter( 'wp_sitemaps_taxonomies', array( $this, 'exclude_taxonomies_from_sitemap' ) );
 		add_filter( 'render_block_core/button', array( $this, 'colour_toggle' ), 10, 2 );
 		add_filter( 'render_block_core/post-excerpt', array( $this, 'work_card_read_more' ), 10, 3 );
+		add_filter( 'render_block_core/post-navigation-link', array( $this, 'post_navigation_link' ), 10, 2 );
 	}
 
 	/**
@@ -38,7 +39,7 @@ final class Theme {
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'wp-block-styles' );
 		add_theme_support( 'editor-styles' );
-		add_editor_style( 'build/editor.css' );
+		add_editor_style( $this->asset_url( 'editor.css' ) );
 		add_post_type_support( 'page', 'excerpt' );
 	}
 
@@ -59,6 +60,35 @@ final class Theme {
 	 */
 	public function editor_assets(): void {
 		$this->enqueue_entry( 'editor' );
+	}
+
+	/**
+	 * Render post navigation links with the project navigation markup.
+	 *
+	 * @param string              $content Rendered block content.
+	 * @param array<string,mixed> $block   Block data.
+	 * @return string Navigation link markup.
+	 */
+	public function post_navigation_link( string $content, array $block ): string {
+		$type = $block['attrs']['type'] ?? 'next';
+		$post = 'previous' === $type ? get_previous_post() : get_next_post();
+
+		if ( ! $post instanceof \WP_Post ) {
+			return '';
+		}
+
+		$label = 'previous' === $type ? __( 'Previous Post', 'obel' ) : __( 'Next Post', 'obel' );
+		$title = get_the_title( $post );
+		$aria  = sprintf( '%1$s: %2$s', $label, $title );
+
+		return sprintf(
+			'<p class="entry__navigation-item entry__navigation-item--%1$s wp-block-paragraph"><span class="entry__navigation-label">%2$s</span><a aria-label="%3$s" title="%3$s" href="%4$s" class="entry__navigation-link">%5$s</a></p>',
+			esc_attr( $type ),
+			esc_html( $label ),
+			esc_attr( $aria ),
+			esc_url( get_permalink( $post ) ),
+			esc_html( $title )
+		);
 	}
 
 	/**
@@ -101,11 +131,33 @@ final class Theme {
 		if ( ! file_exists( $base . '.asset.php' ) ) {
 			return;
 		}
-		$asset = require $base . '.asset.php';
-		wp_enqueue_script( 'obel-' . $entry, get_template_directory_uri() . '/build/' . $entry . '.js', $asset['dependencies'], $asset['version'], $in_footer );
-		if ( 'scripts' === $entry && file_exists( get_template_directory() . '/build/styles.css' ) ) {
-			wp_enqueue_style( 'obel-styles', get_template_directory_uri() . '/build/styles.css', array(), (string) filemtime( get_template_directory() . '/build/styles.css' ) );
+		$asset       = require $base . '.asset.php';
+		$script_path = $base . '.js';
+		$script_ver  = file_exists( $script_path ) ? (string) filemtime( $script_path ) : $asset['version'];
+
+		wp_enqueue_script( 'obel-' . $entry, get_theme_file_uri( 'build/' . $entry . '.js' ), $asset['dependencies'], $script_ver, $in_footer );
+
+		if ( $entry === 'scripts' && file_exists( get_template_directory() . '/build/styles.css' ) ) {
+			$style_path = get_template_directory() . '/build/styles.css';
+			wp_enqueue_style( 'obel-styles', get_theme_file_uri( 'build/styles.css' ), array(), (string) filemtime( $style_path ) );
 		}
+	}
+
+	/**
+	 * Return a compiled asset URL with its file modification time as the version.
+	 *
+	 * @param string $file Compiled file name inside build/.
+	 * @return string Versioned asset URL.
+	 */
+	private function asset_url( string $file ): string {
+		$path = get_theme_file_path( 'build/' . $file );
+		$url  = get_theme_file_uri( 'build/' . $file );
+
+		if ( file_exists( $path ) ) {
+			$url = add_query_arg( 'ver', (string) filemtime( $path ), $url );
+		}
+
+		return $url;
 	}
 
 	/**
@@ -123,13 +175,13 @@ final class Theme {
 		$about_page         = get_page_by_path( 'about', OBJECT, 'page' );
 		if ( $about_page instanceof \WP_Post && is_post_publicly_viewable( $about_page ) ) {
 			$description = trim( wp_strip_all_tags( get_the_excerpt( $about_page ) ) );
-			if ( '' !== $description ) {
+			if ( $description !== '' ) {
 				$person['description'] = $description;
 			}
 		}
 
 		static $profile_image_url = null;
-		if ( null === $profile_image_url ) {
+		if ( $profile_image_url === null ) {
 			$profile_image     = get_page_by_path( 'profile', OBJECT, 'attachment' );
 			$profile_image_url = $profile_image instanceof \WP_Post
 				? wp_get_attachment_image_url( $profile_image->ID, 'full' )
@@ -189,6 +241,7 @@ final class Theme {
 		if ( $tags->next_tag( 'button' ) ) {
 			$tags->set_attribute( 'hidden', true );
 			$tags->set_attribute( 'aria-pressed', 'false' );
+			$tags->set_attribute( 'aria-label', __( 'Toggle Colour Mode', 'obel' ) );
 		}
 		return $tags->get_updated_html();
 	}
@@ -213,7 +266,7 @@ final class Theme {
 		}
 
 		$post_title = wp_strip_all_tags( get_the_title( $post_id ) );
-		if ( '' === $post_title ) {
+		if ( $post_title === '' ) {
 			return $content;
 		}
 

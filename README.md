@@ -11,8 +11,11 @@ Current release: **0.4.1**.
 - Light and dark colour modes with a shared editor preview.
 - Responsive navigation, archive layouts and project detail templates.
 - Accessible focus states, reduced-motion support and card reveal transitions.
+- Accessible colour-mode controls and non-duplicated logo announcements.
+- Semantic archive headings, sections and linked-card media.
+- Semantic page articles and labelled navigation landmarks.
 - Responsive image sizes and adaptive featured-image presentation.
-- Shared BEM-oriented SCSS and JavaScript components across the front-end and editor.
+- Shared BEM-oriented SCSS and JavaScript components across the Front-End and editor.
 
 Detailed feature notes are available in the [Obel Wiki](https://github.com/smededwards/obel/wiki/Features), with development guidance in the [Development page](https://github.com/smededwards/obel/wiki/Development).
 
@@ -40,7 +43,7 @@ Use Conventional Commit subjects and PR titles, such as `feat(theme): add naviga
 
 ## Contact Form Styling
 
-Rune's Contact Form uses `src/scss/components/_contact-form.scss` for its BEM field, button, focus and validation styles. The front-end and editor share the styles, which use the theme colours and visible focus states. Aeon handles submissions; the rest of the page uses native blocks.
+Rune's Contact Form uses `src/scss/components/_contact-form.scss` for its BEM field, button, focus and validation styles. The Front-End and editor share the styles, which use the theme colours and visible focus states. Aeon handles submissions; the rest of the page uses native blocks.
 
 ## Work and Projects Pages
 
@@ -76,7 +79,7 @@ Work and Projects use image-led archive cards. The Posts archive lists titles, d
 
 ## Site Editing and Navigation
 
-Edit page frames, archive layouts and the Posts index in **Appearance → Editor → Templates**. Edit the Header and Footer in their template parts. Page and post content is edited in its usual editor. The front-end and editor use the same SCSS. The colour toggle is a core Button block; Obel supplies its icon and front-end behaviour.
+Edit page frames, archive layouts and the Posts index in **Appearance → Editor → Templates**. Edit the Header and Footer in their template parts. Page and post content is edited in its usual editor. The Front-End and editor use the same SCSS. The colour toggle is a core Button block; Obel supplies its icon and Front-End behaviour.
 
 Manage links in **Appearance → Editor → Navigation → Primary navigation**. Add, remove or reorder links there. Move the Navigation block in the Header template part to change its position, or select another saved menu using the block controls. The header uses WordPress's native Navigation block.
 
@@ -86,10 +89,10 @@ The Site Editor saves templates and template parts in the database, where they t
 
 ## Asset and SCSS Structure
 
-`src/scripts.js` imports `src/styles.scss` and the front-end behaviour. Webpack emits `build/scripts.js` and `build/styles.css`. WordPress reads the generated script dependency metadata and versions the stylesheet using its modification time, so CSS-only builds refresh the browser cache. `src/js/editor.js` imports the shared styles and `src/scss/editor.scss` for editor canvas defaults. Supporting JavaScript lives in `src/js/`, with reusable front-end components in `src/js/components/`. Only `scripts.js` and `styles.scss` sit directly in `src/`.
+`src/scripts.js` imports `src/styles.scss` and the Front-End behaviour. Webpack emits `build/scripts.js` and `build/styles.css`. WordPress reads the generated script dependency metadata and versions the stylesheet using its modification time, so CSS-only builds refresh the browser cache. `src/js/editor.js` imports the shared styles and `src/scss/editor.scss` for editor canvas defaults. Supporting JavaScript lives in `src/js/`, with reusable Front-End components in `src/js/components/`. Only `scripts.js` and `styles.scss` sit directly in `src/`.
 
 SCSS under `src/scss/` is grouped into `foundations/` for fonts, colour tokens and element defaults; `layouts/` for shared page, grid and block layouts; `components/` for BEM blocks; and `utilities/` for shared behaviour, including reduced-motion handling. Each component partial contains its elements, modifiers, interaction states and responsive rules. Use shallow `&__element`, `&--modifier` and `&:hover` nesting, and retain WordPress's native block classes. The Navigation component handles the gold link hover, overlay layout and 323px compact-menu breakpoint. The Header component defines the logo and toggle rows and navigation placement.
 
 Linked Image and Featured Image blocks show the keyboard focus ring on the outer block, so image zoom does not clip it. `src/scss/utilities/_focus.scss` and `src/scss/components/_linked-image.scss` use a 3px theme-accent outline with a 5px offset. The ring appears when the link matches `:focus-visible`.
 
-Rune's editor colour toggle sets the canvas preview through the `--rune-canvas-*` variables. Obel's editor tokens use those values, with light-colour fallbacks when Rune is inactive. This does not alter front-end colours or saved block styles.
+Rune's editor colour toggle sets the canvas preview through the `--rune-canvas-*` variables. Obel's editor tokens use those values, with light-colour fallbacks when Rune is inactive. This does not alter Front-End colours or saved block styles.

@@ -1,0 +1,12 @@
+@mixin base {
+	align-items: center;
+	display: inline-flex;
+	min-height: 44px;
+	padding: 0.25rem 0.5rem;
+	text-decoration: none;
+
+	&:hover,
+	&:focus-visible {
+		color: var(--obel-gold);
+	}
+}

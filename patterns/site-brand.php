@@ -12,10 +12,10 @@
 <div class="wp-block-group site-header__brand">
 <!-- wp:image {"sizeSlug":"full","linkDestination":"custom","className":"site-header__logo"} -->
 <figure class="wp-block-image size-full site-header__logo">
-	<a href="<?php printf( '%s', esc_url( home_url( '/' ) ) ); ?>">
+	<a href="<?php printf( '%s', esc_url( home_url( '/' ) ) ); ?>" aria-label="<?php esc_attr_e( 'Home', 'obel' ); ?>">
 		<img
 			src="<?php printf( '%s', esc_url( get_template_directory_uri() . '/assets/images/logo.svg' ) ); ?>"
-			alt="<?php printf( '%s', esc_attr( get_bloginfo( 'name' ) ) ); ?>"
+			alt=""
 		>
 	</a>
 </figure>

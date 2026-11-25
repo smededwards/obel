@@ -6,6 +6,12 @@ All notable changes to Obel are documented here.
 
 Future changes go here.
 
+### Accessibility
+
+- Improve colour-mode control labelling and avoid duplicate header logo announcements for assistive technology.
+- Use semantic archive headings and sections, and avoid duplicate linked-card media.
+- Add article wrappers for page content and labels for post and footer navigation landmarks.
+
 ## [0.4.1] - 2026-11-23
 
 ### Security
@@ -22,7 +28,7 @@ Future changes go here.
 ### Changed
 
 - Refine responsive images, colour-mode assets, theme components, fonts and contact controls.
-- Align front-end and editor styles with the component structure.
+- Align Front-End and editor styles with the component structure.
 
 ### Fixed
 

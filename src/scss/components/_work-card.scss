@@ -1,3 +1,5 @@
+@use "../utilities/action-link";
+
 .work-card {
 	margin: 0;
 	display: flex;
@@ -67,20 +69,14 @@
 		}
 
 		.wp-block-post-excerpt__more-link {
-			align-items: center;
+			@include action-link.base;
+
 			color: var(--obel-ink);
-			display: inline-flex;
 			font-size: 0.75rem;
 			font-weight: 600;
 			gap: 0.35rem;
 			letter-spacing: 0.06em;
-			text-decoration: none;
 			text-transform: uppercase;
-
-			&:hover,
-			&:focus-visible {
-				color: var(--obel-gold);
-			}
 
 			&::after {
 				content: "→";

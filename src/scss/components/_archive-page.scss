@@ -18,6 +18,14 @@
 		color: var(--obel-muted, #424245);
 	}
 
+	.wp-block-query-no-results {
+		max-width: 65ch;
+		margin: 0 auto;
+		border-inline-start: 3px solid var(--obel-gold);
+		padding: 1rem 1.25rem;
+		background: var(--obel-panel);
+	}
+
 	@media (max-width: breakpoints.$small) {
 		&__header {
 			margin-block: 2rem 3rem;
