@@ -6,6 +6,8 @@ All notable changes to Obel are documented here.
 
 Future changes go here.
 
+## [0.5.0] - 2026-11-25
+
 ### Accessibility
 
 - Improve colour-mode control labelling and avoid duplicate header logo announcements for assistive technology.
