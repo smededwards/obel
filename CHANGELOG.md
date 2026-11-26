@@ -6,6 +6,12 @@ All notable changes to Obel are documented here.
 
 Future changes go here.
 
+## [0.5.1] - 2026-11-26
+
+### Documentation
+
+- Enforce shared PR labels, milestones and release metadata in CI.
+
 ## [0.5.0] - 2026-11-25
 
 ### Accessibility
