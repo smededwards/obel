@@ -39,7 +39,7 @@ Obel generates three core image sizes: a cropped 150×150 Thumbnail, Medium up t
 
 ## Contribution Conventions
 
-Use Conventional Commit subjects and PR titles, such as `feat(theme): add navigation` or `fix(blocks): correct editor styles`. Name the first commit `Initial Commit`. PR CI checks titles and commits. See `AGENTS.md` for details.
+Use Conventional Commit subjects and PR titles, such as `feat(theme): add navigation` or `fix(blocks): correct editor styles`. Name the first commit `Initial Commit`. PR CI checks titles, commits, labels and milestones. Every PR needs one `type:*` label, at least one `area:*` label, one `semver:*` impact label and a release, initiative or maintenance milestone. See `AGENTS.md` for details.
 
 ## Contact Form Styling
 
